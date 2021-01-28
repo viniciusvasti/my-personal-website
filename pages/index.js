@@ -11,7 +11,7 @@ export default function Home({ allPostsData }) {
             <Head>
                 <title>{siteTitle}</title>
             </Head>
-            <section className={utilStyles.headingMd}>
+            <section className={utilStyles.aboutMe}>
                 <p>
                     Hey, welcome! I'm Vinicius and I'm a <b>Technical Leader</b>{" "}
                     and Solutions Architect at{" "}
@@ -38,16 +38,10 @@ export default function Home({ allPostsData }) {
                             <b>together with other Technical Leaders</b>
                         </li>
                         <li>
-                            Manage my time to also code something, being a
+                            Manage my time to also code something, being a{" "}
                             <b>hands on</b> Technical Leader
                         </li>
                     </ul>
-                </p>
-                <p>
-                    (This is a sample website - you’ll be building a site like
-                    this on{" "}
-                    <a href="https://nextjs.org/learn">our Next.js tutorial</a>
-                    .)
                 </p>
             </section>
             <section
