@@ -55,6 +55,7 @@ export default function Layout({ children, home }) {
                         </h2>
                     </>
                 )}
+                <Link href="/aboutme">About Me</Link>
             </header>
             <main>{children}</main>
             {!home && (

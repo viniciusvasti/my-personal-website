@@ -11,39 +11,6 @@ export default function Home({ allPostsData }) {
             <Head>
                 <title>{siteTitle}</title>
             </Head>
-            <section className={utilStyles.aboutMe}>
-                <p>
-                    Hey, welcome! I'm Vinicius and I'm a <b>Technical Leader</b>{" "}
-                    and Solutions Architect at{" "}
-                    <a href="https://www.riachuelo.com.br">
-                        Riachuelo Fashion Stores
-                    </a>
-                    <br />I lead a team of 9 developers in a technical contexts.
-                    My main reponsibilities are:
-                    <ul>
-                        <li>
-                            Design and explain <b>Architectural Solutions</b>
-                        </li>
-                        <li>
-                            Propose <b>standards</b> to be followed while we are
-                            coding
-                        </li>
-                        <li>
-                            Be aware of corporative{" "}
-                            <b>architectural principles and standards</b> and
-                            ensure that our team solutions agreed with it
-                        </li>
-                        <li>
-                            Bring standards and corporative solutions{" "}
-                            <b>together with other Technical Leaders</b>
-                        </li>
-                        <li>
-                            Manage my time to also code something, being a{" "}
-                            <b>hands on</b> Technical Leader
-                        </li>
-                    </ul>
-                </p>
-            </section>
             <section
                 className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}
             >
