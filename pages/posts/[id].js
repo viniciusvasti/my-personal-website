@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Layout from "../../components/layout";
 import Date from "../../components/date";
+import TagLabel from "../../components/tagLabel";
 import utilStyles from "../../styles/utils.module.css";
 import { getAllPostIds, getPostData } from "../../lib/posts";
 
@@ -15,6 +16,13 @@ export default function Post({ postData }) {
                 <div className={utilStyles.lightText}>
                     <Date dateString={postData.date} />
                 </div>
+                {postData.tags.split(",").map((tag) => (
+                    <>
+                        <TagLabel backgroundColor="#AAA" textColor="#EEE">
+                            {tag}
+                        </TagLabel>{" "}
+                    </>
+                ))}
                 <div
                     dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
                 />

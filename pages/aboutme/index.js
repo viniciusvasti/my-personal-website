@@ -1,21 +1,16 @@
 import Head from "next/head";
 import Layout, { siteTitle } from "../../components/layout";
+import TagLabel from "../../components/tagLabel";
 import utilStyles from "../../styles/utils.module.css";
 
 const SkillsLabel = ({ type, children }) => {
     return (
-        <div
-            style={{
-                backgroundColor: type === "soft" ? "green" : "red",
-                color: "white",
-                display: "inline",
-                borderRadius: 5,
-                paddingRight: 5,
-                paddingLeft: 5,
-            }}
+        <TagLabel
+            backgroundColor={type === "soft" ? "green" : "red"}
+            textColor="white"
         >
             {children}
-        </div>
+        </TagLabel>
     );
 };
 
@@ -40,10 +35,12 @@ export default function Post() {
                     my day-to-day I'm working with{" "}
                     <SkillsLabel>Java</SkillsLabel>,{" "}
                     <SkillsLabel>NodeJS</SkillsLabel>,{" "}
-                    <SkillsLabel>Microservice</SkillsLabel>,{" "}
+                    <SkillsLabel>SQL</SkillsLabel>,{" "}
+                    <SkillsLabel>Microservices</SkillsLabel>,{" "}
                     <SkillsLabel>Serverless</SkillsLabel>,{" "}
                     <SkillsLabel>API Gateway</SkillsLabel>,{" "}
-                    <SkillsLabel>Cloud Computing (AWS)</SkillsLabel>
+                    <SkillsLabel>Cloud Computing (AWS)</SkillsLabel>,{" "}
+                    <SkillsLabel>Terraform</SkillsLabel>
                     <br />
                     But I also like playing arount with <b>
                         frontend
