@@ -59,23 +59,23 @@ export default function Post() {
                     <br />I lead a team of 9 developers in a technical contexts.
                     My main reponsibilities are:
                     <ul>
-                        <li>
+                        <li key="0">
                             Design and explain <b>Architectural Solutions</b>
                         </li>
-                        <li>
+                        <li key="1">
                             Propose <b>standards</b> to be followed while we are
                             coding
                         </li>
-                        <li>
+                        <li key="2">
                             Be aware of corporative{" "}
                             <b>architectural principles and standards</b> and
                             ensure that our team solutions agreed with it
                         </li>
-                        <li>
+                        <li key="3">
                             Bring standards and corporative solutions{" "}
                             <b>together with other Technical Leaders</b>
                         </li>
-                        <li>
+                        <li key="4">
                             Manage my time to also code something, being a{" "}
                             <b>hands on</b> Technical Leader
                         </li>

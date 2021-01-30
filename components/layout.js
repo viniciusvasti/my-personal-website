@@ -1,11 +1,22 @@
 import Head from "next/head";
+import Link from "next/link";
 import styles from "./layout.module.css";
 import utilStyles from "../styles/utils.module.css";
-import Link from "next/link";
 
 const name = "Vinícius A dos Santos";
 export const siteTitle =
     "Vinícius A Santos - Software Engineer & Solutions Architect";
+
+const SocialLink = ({ url, img, imgAlt }) => (
+    <a
+        className={styles.headerSocialItem}
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        <img height="30px" src={img} alt={imgAlt} />
+    </a>
+);
 
 export default function Layout({ children, home }) {
     return (
@@ -56,6 +67,18 @@ export default function Layout({ children, home }) {
                     </>
                 )}
                 <Link href="/aboutme">About Me</Link>
+                <div className={styles.headerSocial}>
+                    <SocialLink
+                        img="/images/linkedin.svg"
+                        imgAlt="LinkedIn"
+                        url="https://www.linkedin.com/in/vinicius-vas-ti/"
+                    />
+                    <SocialLink
+                        img="/images/github.svg"
+                        imgAlt="GitHub"
+                        url="https://github.com/viniciusvasti/"
+                    />
+                </div>
             </header>
             <main>{children}</main>
             {!home && (
