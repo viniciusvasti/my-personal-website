@@ -1,19 +1,29 @@
 {
-  "name": "vinicius-a-santos",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
-  },
-  "dependencies": {
-    "date-fns": "^2.16.1",
-    "gray-matter": "^4.0.2",
-    "next": "^10.0.0",
-    "react": "17.0.1",
-    "react-dom": "17.0.1",
-    "remark": "^13.0.0",
-    "remark-html": "^13.0.1"
-  }
+    "name": "vinisantos.dev",
+    "version": "1.0.0",
+    "description": "Vinícius A. dos Santos developer web site",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start"
+    },
+    "author": {
+        "name": "Vinicius A Santos",
+        "email": "vinicius.vas.ti@gmail.com",
+        "url": "vinisantos.dev"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/viniciusvasti/my-personal-website"
+    },
+    "dependencies": {
+        "date-fns": "^2.16.1",
+        "gray-matter": "^4.0.2",
+        "next": "^10.0.0",
+        "react": "17.0.1",
+        "react-dom": "17.0.1",
+        "remark": "^13.0.0",
+        "remark-html": "^13.0.1"
+    }
 }
