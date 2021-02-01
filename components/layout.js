@@ -22,7 +22,7 @@ export default function Layout({ children, home }) {
     return (
         <div className={styles.container}>
             <Head>
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" href="/images/profile.jpg" />
                 <meta
                     name="description"
                     content="Day-to-day life and coding with an Software Engineer/Architect"

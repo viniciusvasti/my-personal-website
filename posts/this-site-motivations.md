@@ -4,6 +4,8 @@ date: '2021-01-28'
 tags: 'personal'
 ---
 
+Hi everyone!
+Let me start this website showing my motivations for this.
 ## Why
 Since I moved to São Paulo to work at **Riachulo Stores Tech**, I started adding some new technologies and frameworks to my "tool box".  
 Some of that I only tried one or two times. So after some time, I forget some details, and would be nice to have some content, write by myself to refresh my mind about theese technologies, like Node-Red, for example.
