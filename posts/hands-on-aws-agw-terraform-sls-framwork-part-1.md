@@ -5,7 +5,7 @@ tags: 'javascript,nodejs,serverless,terraform,lambda,aws,aws api gateway,rest'
 ---
 
 ---
-Hi everyone!
+Hi, everyone!
 For this first part of this hands on with **AWS API Gateway**, provisioned with **Terraform** and backed by **AWS Lambda** built with **Serverless Framework**, we're going to build an REST API for sending SMS Messages usign **AWS SNS**. Sounds like a lot of things, but it's no that lot of working.  
 For this part 1, we'll provision our API Gateway with Terraform and for part 2 and 3:
 
@@ -26,7 +26,7 @@ For this part 1, we'll provision our API Gateway with Terraform and for part 2 a
 
 ---
 
-## Why Terraform, since Serverless Framework itself can provision AWS resources?
+### Why Terraform, since Serverless Framework itself can provision AWS resources?
 Well, it's very common to have an API Gateway serving different backend services.  
 Ex: endpoint X points to a serverless function, endpoint Y points to Java Spring Boot Microservice, endpoint Z points to third-party API.  
 If the API Gateway gets provisioned by the serverless Service, it's infrastructure code gonna be highly coupled to this service and you need to implement the other types of integrations using this service as a proxy (creating more lambdas and increasing the infrastructure cost and complexity).  
@@ -34,7 +34,7 @@ Also, if you destroy this Service, the API Gateway gonna be destroyed too.
 
 So, hands on!
 
-### Step 1 - Terraform AWS API Gateway provisionment
+### Terraform AWS API Gateway provisionment
 If haven't Terraform installed, do it: https://www.terraform.io/downloads.html.  
 When provisioning resources, the docs helps a lot: https://www.terraform.io/docs/providers/aws/index.html.  
 Nobody should try to memorize the code for the whole bunch of services AWS provides.
@@ -152,5 +152,6 @@ We should see on AWS Console three API resources ("/", "my-api" and "v1"):
 
 That's it for this post. In part 2 we're going to implement backend with Serverless and part 3 we'll implement authentication with Amazon Cognito:
 
-<a href="../posts/hands-on-aws-agw-terraform-sls-framwork-part-2">AWS API Gateway + Terraform + Serverles Framework - Part 2</a>  
-<a href="../posts/hands-on-aws-agw-terraform-sls-framwork-part-3">AWS API Gateway + Terraform + Serverles Framework - Part 3</a>
+### Related Posts
+- <a href="../posts/hands-on-aws-agw-terraform-sls-framwork-part-2">AWS API Gateway + Terraform + Serverles Framework - Part 2</a>  
+- <a href="../posts/hands-on-aws-agw-terraform-sls-framwork-part-3">AWS API Gateway + Terraform + Serverles Framework - Part 3</a>
