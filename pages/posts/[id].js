@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import Head from "next/head";
 import Layout from "../../components/layout";
 import Date from "../../components/date";
@@ -5,11 +6,16 @@ import TagLabel from "../../components/tagLabel";
 import utilStyles from "../../styles/utils.module.css";
 import { getAllPostIds, getPostData } from "../../lib/posts";
 
+
 export default function Post({ postData }) {
     return (
         <Layout>
             <Head>
                 <title>{postData.title}</title>
+                <link
+                    rel="stylesheet"
+                    href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.2/build/styles/default.min.css"
+                ></link>
             </Head>
             <article>
                 <h1 className={utilStyles.headingXl}>{postData.title}</h1>
