@@ -6,7 +6,8 @@ tags: 'javascript,nodejs,serverless,terraform,lambda,aws,aws api gateway,rest'
 
 ---
 Hi, everyone!
-For this first part of this hands on with **AWS API Gateway**, provisioned with **Terraform** and backed by **AWS Lambda** built with **Serverless Framework**, we're going to build an REST API for sending SMS Messages usign **AWS SNS**. Sounds like a lot of things, but it's no that lot of working.  
+For this "Hands on!" we're going to build an REST API with **AWS API Gateway**, provisioned with **Terraform** and backed by **AWS Lambda** built with **Serverless Framework**.  
+The REST API will allow us to send SMS Messages usign **AWS SNS**. Sounds like a lot of things, but it's no that lot of working.  
 For this part 1, we'll provision our API Gateway with Terraform and for part 2 and 3:
 
 <a href="../posts/hands-on-aws-agw-terraform-sls-framwork-part-2">Part 2: coding the backend with Serverles Framework</a>  
@@ -56,7 +57,9 @@ We are telling terraform that our provider is AWS and we want provision resource
 We're also setting aws credentials having the roles and policies needed to manage API Gateway (we could set the credentials as environment variables as well).
 I's important set the version of terraform aws plugin to avoid upgrades with breaking changes issues.
 Now, we can init terraform in this project running in terminal:  
-```$ terraform init```  
+```sh
+$ terraform init
+```  
 You should se the message `Terraform has been successfully initialized!`.  
 To finally provision an API Gateway, let's create another `.tf` file as follows:
 ```java
@@ -76,7 +79,9 @@ resource "aws_api_gateway_rest_api" "my_api_gateway" {
 The content inside the block refers to attributes of the API Gateway. You can look at AWS API Gateway if you are not familiar.
 
 We can now execute the command below to check what Terraform gonna do after we apply the provisionment plan:  
-```$ terraform plan```  
+```sh
+$ terraform plan
+```  
 Among other output messages, you should see:
 ```java
 Terraform will perform the following actions:
@@ -102,7 +107,9 @@ Plan: 1 to add, 0 to change, 0 to destroy.
 As we can see on the last line, Terraform gonna add 1 resource, change none and destroy none.  
 It's not guaranteed that this plan will be exactly the same applyied. So we could use `$ terraform plan -out`, but this plan is pretty simple.  
 To really apply the changes, the command is:
-```$ terraform apply```  
+```sh
+$ terraform apply
+```  
 Then exactly plan to be executed will be presented again and you can answer `yes`.  
 Going to AWS Console and looking for API Gateway Resource (region us-east-1), we can see the API created:
 
@@ -140,7 +147,9 @@ resource "aws_api_gateway_resource" "v1" {
 
 Note that for "v1" resource, the parent_id is the id of "my_api" resource, thus the complete path gonna be "/my-api/v1".  
 Running apply again:
-```$ terraform apply```  
+```sh
+$ terraform apply
+```  
 We should see on AWS Console three API resources ("/", "my-api" and "v1"):
 
 ../images/posts/hands-on-aws-agw-terraform-sls-framwork-part-1/aws_api_gateway_with_paths.png
