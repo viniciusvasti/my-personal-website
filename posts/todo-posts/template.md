@@ -26,5 +26,5 @@ So, hands on!
 
 
 ### Related Posts
-- <a href="../posts/hands-on-aws-agw-terraform-sls-framwork-part-2">AWS API Gateway + Terraform + Serverles Framework - Part 2</a>  
-- <a href="../posts/hands-on-aws-agw-terraform-sls-framwork-part-3">AWS API Gateway + Terraform + Serverles Framework - Part 3</a>
+- <a href="../posts/hands-on-aws-agw-terraform-sls-framework-part-2">AWS API Gateway + Terraform + Serverles Framework - Part 2</a>  
+- <a href="../posts/hands-on-aws-agw-terraform-sls-framework-part-3">AWS API Gateway + Terraform + Serverles Framework - Part 3</a>
