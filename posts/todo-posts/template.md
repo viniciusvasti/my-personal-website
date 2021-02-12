@@ -1,7 +1,7 @@
 ---
 title: 'Post Title'
 date: '2021-02-01'
-tags: 'javascript,nodejs,serverless,terraform,lambda,aws,aws api gateway,rest'
+tags: 'javascript,nodejs,serverless,terraform,lambda,aws,aws api gateway,rest api'
 ---
 
 ---
