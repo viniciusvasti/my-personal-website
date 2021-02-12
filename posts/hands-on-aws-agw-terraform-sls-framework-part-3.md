@@ -85,7 +85,7 @@ With this, we gonna have an authorizer associated with our API which can be set 
 `$ terraform apply`
 
 On the Authorizers on AWS Console's Amazon API Gateway, we should see the authorizer created. We need it's ID:  
-../images/posts/hands-on-aws-agw-terraform-sls-framwork-part-3/aws_api_gateway_authorizer_id.png
+../images/posts/hands-on-aws-agw-terraform-sls-framework-part-3/aws_api_gateway_authorizer_id.png
 
 Back to Serverless Framework project, in `functions` attribute of `serverless.yml`, we set the authorizer like that:
 ```yaml
@@ -105,7 +105,7 @@ functions:
 Note the `scope` attribute, the same of `allowed_oauth_scopes` on `aws_cognito_user_pool_client` in `cognito.tf`.  
 
 Run `$ sls deploy` and let's test our API with Postman:  
-../images/posts/hands-on-aws-agw-terraform-sls-framwork-part-3/aws_api_gateway_authorizer_test.png
+../images/posts/hands-on-aws-agw-terraform-sls-framework-part-3/aws_api_gateway_authorizer_test.png
 
 Oops! We got `401 Unauthorized`. Let's get a token now.  
 On AWS Console, go to `Cognito -> Manage User Pools -> my-api-user-pool`. On the left painel, click on App clients and lok for "client id" and "client secret". Convert "\<client id\>:\<client secret\>" to base64 and use it as a Basic header Authorizer.  
@@ -126,7 +126,7 @@ And the response should be a Json with access token:
 ```
 
 Setting the access token on the Authorization header os the request for the SMS API, it works fine again:  
-../images/posts/hands-on-aws-agw-terraform-sls-framwork-part-3/aws_api_gateway_authorizer_test_with_auth.png
+../images/posts/hands-on-aws-agw-terraform-sls-framework-part-3/aws_api_gateway_authorizer_test_with_auth.png
 
 <br />
 <br />
