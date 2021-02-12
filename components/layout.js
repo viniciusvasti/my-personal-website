@@ -25,7 +25,7 @@ export default function Layout({ children, home }) {
                 <link rel="icon" href="/images/profile.jpg" />
                 <meta
                     name="description"
-                    content="Day-to-day life and coding with an Software Engineer/Architect"
+                    content="Day-to-day life and coding as an Software Engineer/Architect"
                 />
                 <meta
                     property="og:image"
