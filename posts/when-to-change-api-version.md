@@ -1,5 +1,5 @@
 ---
-title: 'When to change an Rest API version'
+title: 'When to change a Rest API version'
 date: '2021-02-11'
 tags: 'rest api'
 ---
@@ -33,7 +33,7 @@ So I'm listing some rules to guide us about when to generate a new version of a 
 - Increasing restrictions for as parameter, either a path, query string or body param. E.g not not accept attribute `name` over 50 characters;
 - Changing default value of an optional parameter. E.g. default value for `payment-method` if it is not informed will be `credit`, but it used to be `debit`;
 - Adding a new Http Status Code response. E.g. when there aren't any products in the bag, `GET products` used to return Http `200` and an empty array, but now it gonna return `404`;
-- Removing a Http Status Code response. E.g. opposite of the above example;
+- Removing a Http Status Code response. E.g. opposite of the above example.
 
 ### Changes that may be handled on the current API version
 - Adding a new resource;
@@ -41,4 +41,4 @@ So I'm listing some rules to guide us about when to generate a new version of a 
 - Adding a new resource path;
 - Turning to optional a required parameter, either it is a path, query string or body attribute param;
 - Adding new optional parameters;
-- Adding new attributes to an API response;
+- Adding new attributes to an API response.
