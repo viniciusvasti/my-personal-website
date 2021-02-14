@@ -81,4 +81,4 @@ It is useful for anyone, in a technical role or not, to have a view of how and w
 That's it for now.  
 See you soon on next posts.
 
-See all psots series at <a href="../posts/awesome-backend">Awesome Backend - High Available, robust, modern, backend arquitecture hands on</a>  
+See all posts series at <a href="../posts/awesome-backend">Awesome Backend - High Available, robust, modern, backend arquitecture hands on</a>  
