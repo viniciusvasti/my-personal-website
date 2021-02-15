@@ -7,7 +7,7 @@ tags: 'BDD,architecture,c4model'
 ---
 Hi, everyone!
 This is the part 1 of Awesome Backend series.
-More info at <a href="../posts/hands-on-aws-agw-terraform-sls-framework-part-2">Awesome Backend - High Available, robust, modern, backend arquitecture hands on</a>  
+More info at <a href="../posts/hands-on-aws-agw-terraform-sls-framework-part-2">Awesome Backend - High Available, robust, modern, backend architecture hands on</a>  
 For this part, I'm going to write business use cases and present de first level of C4 Model
 
 So, hands on!
@@ -67,7 +67,7 @@ I'm gonna follow [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development
 
 Obviously, this is an exercise and the focus is on software. There a lot of details to consider for a real ordering process.
 
-### C4 Model - Leve 1 - Context Diagram
+### C4 Model - Level 1 - Context Diagram
 It's time to assume the Software Architect role.  
 The Context Diagram of [C4 Model](https://c4model.com/) is really useful to contextualize the System aside other external Systems and actors.  
 It is useful for anyone, in a technical role or not, to have a view of how and who the System interacts with.
@@ -81,4 +81,4 @@ It is useful for anyone, in a technical role or not, to have a view of how and w
 That's it for now.  
 See you soon on next posts.
 
-See all posts series at <a href="../posts/awesome-backend">Awesome Backend - High Available, robust, modern, backend arquitecture hands on</a>  
+See all posts series at <a href="../posts/awesome-backend">Awesome Backend - High Available, robust, modern, backend architecture hands on</a>  
