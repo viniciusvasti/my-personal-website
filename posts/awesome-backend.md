@@ -1,7 +1,7 @@
 ---
-title: 'Awesome Backend - High Available, robust, modern, backend arquitecture hands on'
+title: 'Awesome Backend - High Available, robust, modern, backend architecture hands on'
 date: '2021-02-13'
-tags: 'architecture,java,spring boot,apache kafka,docker,kubernetes,javascript,nodejs,rest api'
+tags: 'architecture,java,spring boot,apache kafka, microservices,docker,kubernetes,javascript,nodejs,rest api'
 ---
 
 ---
@@ -14,8 +14,8 @@ This is the start of a series with no end (because I'm always learn things and I
 I'm gonna put in practice some knowledge about Software Engineering/Architecture, DevOps, SRE...  
 The motivations for this are:
 - Show hard skills;
-- Buld a git repository of a modern and complete project;
-- Put in practice some concepts I konw (like DevOps) but I have not opportunity to use in my job;
+- Build a git repository of a modern and complete project;
+- Put in practice some concepts I know (like DevOps) but I have not opportunity to use in my job;
 - Share knowledge with other developers and the future me haha.
 
 This post will be fixed on top of posts lists and it's gonna be update whenever a new post of the series is released.
