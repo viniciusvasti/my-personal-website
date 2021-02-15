@@ -27,5 +27,8 @@ img {
 }
 
 code {
-    background-color: #f0f0f0;
+    background-color: #cacaca;
+    padding-left: 3px;
+    padding-right: 3px;
+    border-radius: 5px;
 }
