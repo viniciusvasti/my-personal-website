@@ -7,7 +7,7 @@ tags: 'architecture,microservices,apigateway,event-driven,message-driven,apache 
 ---
 Hi, everyone!
 This is the part 2 of Awesome Backend series.
-More info at <a href="../posts/hands-on-aws-agw-terraform-sls-framework-part-2">Awesome Backend - High Available, robust, modern, backend architecture hands on</a>  
+More info at <a href="../posts/awesome-backend">Awesome Backend - High Available, robust, modern, backend architecture hands on</a>  
 For this part, I'm going to model the System, identifying business domain contexts for decouple the backend in a microservice architecture.  
 I'm going to draw it as a C4 Model Container Diagram as well.
 

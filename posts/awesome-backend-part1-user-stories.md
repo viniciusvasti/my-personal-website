@@ -7,7 +7,7 @@ tags: 'BDD,architecture,c4model'
 ---
 Hi, everyone!
 This is the part 1 of Awesome Backend series.
-More info at <a href="../posts/hands-on-aws-agw-terraform-sls-framework-part-2">Awesome Backend - High Available, robust, modern, backend architecture hands on</a>  
+More info at <a href="../posts/awesome-backend">Awesome Backend - High Available, robust, modern, backend architecture hands on</a>  
 For this part, I'm going to write business use cases and present de first level of C4 Model
 
 So, hands on!
