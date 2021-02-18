@@ -15,7 +15,7 @@ So, hands on!
 ---
 
 ## About the tech stack
-- [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development) way of write User Stories: serverless functions on AWS working as our backend;
+- [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development) way of write User Stories;
 - [C4 Model](https://c4model.com/): A simple, easy to write, architecture diagram model;
 - [PlantUML](https://plantuml.com/): A component that allows to quickly write diagrams as code;
 
@@ -23,7 +23,7 @@ So, hands on!
 
 ### Functional flowchart
 I'm building the checkout process of a fictional online store.  
-So let's think about the flow and possible scenarios our application should cover:  
+So let's think about the flow and possible scenarios the application should cover:  
 <a target="_blank" rel="noopener noreferrer" href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/happy-checkout-flow-chart.svg">
     <figure>
         <img src="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/happy-checkout-flow-chart.svg" />
@@ -31,7 +31,7 @@ So let's think about the flow and possible scenarios our application should cove
     </figure>
 </a>
 
-This is the happy path, but things always may not work as expected:
+This is the happy path, but things may always not work as expected:
 - A product in the order may be sold out between the "add to cart" event and "order submitted" event;
 - The payment may be denied by the payment broker.
 

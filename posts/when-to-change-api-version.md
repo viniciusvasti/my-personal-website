@@ -26,7 +26,7 @@ So I'm listing some rules to guide us about when to generate a new version of a 
 - Turning a parameter from optional to required, either path param, query param or the request body;
 - Changing acceptable values for an enumerator param;
 - Denying a content-type that was accepted earlier, either on response or request;
-- Adding an required request header;
+- Adding a required request header;
 - Removing a response header;
 - Removing a response body attribute;
 - Changing a parameter or attribute type, either on the request or response;

@@ -6,7 +6,7 @@ tags: 'terraform,aws,aws api gateway,rest api'
 
 ---
 Hi, everyone!
-For this "Hands on!" we're going to build an REST API with **AWS API Gateway**, provisioned with **Terraform** and backed by **AWS Lambda** built with **Serverless Framework**.  
+For this "Hands on!" we're going to build a REST API with **AWS API Gateway**, provisioned with **Terraform** and backed by **AWS Lambda** built with **Serverless Framework**.  
 The REST API will allow us to send SMS Messages using **AWS SNS**. Sounds like a lot of things, but it's no that lot of working.  
 For this part 1, we'll provision our API Gateway with Terraform and for part 2 and 3:
 

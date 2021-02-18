@@ -6,7 +6,7 @@ tags: 'javascript,nodejs,serverless,lambda,aws,aws api gateway,rest'
 
 ---
 Hi, everyone!
-For this "Hands on!" we're building an REST API with **AWS API Gateway**, provisioned with **Terraform** and backed by **AWS Lambda** built with **Serverless Framework**.  
+For this "Hands on!" we're building a REST API with **AWS API Gateway**, provisioned with **Terraform** and backed by **AWS Lambda** built with **Serverless Framework**.  
 The REST API will allow us to send SMS Messages using **AWS SNS**. Sounds like a lot of things, but it's no that lot of working.  
 For this part 2, we'll code the backend with Serverless Framework and for part 1 and 3:
 
