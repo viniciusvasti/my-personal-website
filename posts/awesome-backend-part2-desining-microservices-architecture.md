@@ -34,15 +34,15 @@ First off all, I will identify the subjects over any operation is executed:
 - Add **product** to **cart**
 - Choose a **payment method**
 - Submit an **order**
-- Check product availability on **inventory**
+- Check product availability on **stock**
 - Process **payment**
-- Decrease product **inventory**
+- Decrease product **stock**
 - Send **email**
 - Trigger **shipment**
 
 Then I can use these subject to identify the bounded contexts of the business domain:
 - Product could have a Product Microservice, with the single responsibility of maintaining a catalog of products. But I'm going to ignore that for now. I believe a CRUD of products would be very trivial.  
-So, an **Inventory Microservice** might handle listing for products plus operations over inventory products count. It may looks like this microservice shouldn't be responsible for listing products, but actually it's the only one who knows which products of the catalog are available for sale. Imagine that it has in it's database at least the id and name of products, replicated from a non implemented Products Microservice, associated with the number of items on inventory.  
+So, an **Stock Microservice** might handle listing for products plus operations over stock products count. It may looks like this microservice shouldn't be responsible for listing products, but actually it's the only one who knows which products of the catalog are available for sale. Imagine that it has in it's database at least the id and name of products, replicated from a non implemented Products Microservice, associated with the number of items on stock.  
 - For payments, a **Payments Microservice** could handle payment methods and payment processing through an integration with a third party payment broker.  
 - An **Orders Microservice** would handle the orders, what includes managing customers cart.  
 - An email sender microservice would be too small and specific, let's call it **Notifications Microservice**, we could use it for SMS or Whatsapp messages later.  
@@ -64,7 +64,7 @@ Besides the Microservices identified above, you can see some other containers:
 - **Databases**: the microservices needs their own databases for achieving decoupling. Of course, there are cases where a microservice don't need a database, Payments Microservice and Notifications Microservice are some examples of it.
 
 For not to make the diagram too big, I'm omitting the databases, so I'm describing it here:
-- **Inventory Microservice Database**: I'm choosing MySQL, a relational database, because of the nature of the data. ACID is important for this kind of data;
+- **Stock Microservice Database**: I'm choosing MySQL, a relational database, because of the nature of the data. ACID is important for this kind of data;
 - **Orders Microservice Database**: MySQL again, for the same reason above;
 - **Shipments Microservice Database**: I'm having MongoDB for this. The data structure is a simple json with shipping data and consistency is not essential here, I just want be able to query shipping requests sent to Shipment Company.
 

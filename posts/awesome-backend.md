@@ -8,6 +8,7 @@ tags: 'architecture,java,spring boot,apache kafka, microservices,docker,kubernet
 ### Awesome Backend Series Posts
 - <a href="../posts/awesome-backend-part1-user-stories">Part 1 - User Stories and C4 Level 1 Diagram</a>  
 - <a href="../posts/awesome-backend-part2-desining-microservices-architecture">Part 2 - Designing Microservices Architecture and C4 Level 2 Diagram</a>  
+- <a href="../posts/awesome-backend-part3-dynamic-kafka-events">Part 3 - Dynamic between microservices and Kafka as a backbone of events</a>  
 
 ---
 Hi, everyone!
