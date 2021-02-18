@@ -24,10 +24,12 @@ So, hands on!
 ### Functional flowchart
 I'm building the checkout process of a fictional online store.  
 So let's think about the flow and possible scenarios our application should cover:  
- <figure>
-    <img src="../images/posts/awesome-backend/happy-checkout-flow-chart.svg" />
-  <figcaption><a href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/happy-checkout-flow-chart.puml">happy-checkout-flow-chart.puml on github</a></figcaption>
-</figure>
+<a target="_blank" rel="noopener noreferrer" href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/happy-checkout-flow-chart.svg">
+    <figure>
+        <img src="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/happy-checkout-flow-chart.svg" />
+    <figcaption><a href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/happy-checkout-flow-chart.puml">happy-checkout-flow-chart.puml on github</a></figcaption>
+    </figure>
+</a>
 
 This is the happy path, but things always may not work as expected:
 - A product in the order may be sold out between the "add to cart" event and "order submitted" event;
@@ -36,10 +38,12 @@ This is the happy path, but things always may not work as expected:
 There are also an improvement in the flow I can see: the last three actions may occur at same time, in parallel.
 
 Including this details to the flow, this is the result:  
+<a target="_blank" rel="noopener noreferrer" href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/checkout-flow-chart.svg">
  <figure>
-    <img src="../images/posts/awesome-backend/checkout-flow-chart.svg" />
+    <img src="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/checkout-flow-chart.svg" />
   <figcaption><a href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/checkout-flow-chart.puml">checkout-flow-chart.puml on github</a></figcaption>
 </figure>
+</a>
 
 ### User Stories
 Now that we have mapped the application flow, we are able to write user stories.  
@@ -72,10 +76,12 @@ It's time to assume the Software Architect role.
 The Context Diagram of [C4 Model](https://c4model.com/) is really useful to contextualize the System aside other external Systems and actors.  
 It is useful for anyone, in a technical role or not, to have a view of how and who the System interacts with.
 
+<a target="_blank" rel="noopener noreferrer" href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/context.svg">
  <figure>
-    <img src="../images/posts/awesome-backend/context.svg" />
+    <img src="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/context.svg" />
   <figcaption><a href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/context.puml">context.puml on github</a></figcaption>
 </figure>
+</a>
 
 ---
 That's it for now.  

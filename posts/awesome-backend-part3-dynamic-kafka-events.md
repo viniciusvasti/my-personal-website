@@ -28,10 +28,12 @@ I'm following the approach of having a backbone of events supporting communicati
 For a detailed description of this approach, it's worth to read this article from [confluent](https://www.confluent.io/blog/build-services-backbone-events/).
 
 This is the Dynamic diagram, one of the C4 supplementary diagrams. Since the core diagrams are static representations of the architecture, this is the best one to describe the flow of actions at runtime:
- <figure>
-    <img src="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/Awesome Online Store/Dynamic/events-backbone-for-ordering.svg" />
-  <figcaption><a href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/Awesome Online Store/Dynamic/events-backbone-for-ordering.puml">checkout-flow-chart.puml on github</a></figcaption>
-</figure>
+<a target="_blank" rel="noopener noreferrer" href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/Awesome Online Store/Dynamic/events-backbone-for-ordering.svg">
+    <figure>
+        <img src="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/Awesome Online Store/Dynamic/events-backbone-for-ordering.svg" />
+    <figcaption><a href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/Awesome Online Store/Dynamic/events-backbone-for-ordering.puml">checkout-flow-chart.puml on github</a></figcaption>
+    </figure>
+</a>
 
 For those not familiar with Kafka, simply putting, the actors are basically three:
 - A Producer, who publishes messages/events to a topic of a Apache Kafka broker;

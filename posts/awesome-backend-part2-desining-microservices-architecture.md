@@ -23,10 +23,12 @@ So, hands on!
 
 ### Identifying Contexts
 The functional flowchart of the app discussed on part 1 ended up like this:
+<a target="_blank" rel="noopener noreferrer" href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/checkout-flow-chart.svg">
  <figure>
     <img src="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/checkout-flow-chart.svg" />
   <figcaption><a href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/checkout-flow-chart.puml">checkout-flow-chart.puml on github</a></figcaption>
 </figure>
+</a>
 
 First off all, I will identify the subjects over any operation is executed:
 - Add **product** to **cart**
@@ -48,11 +50,12 @@ So, an **Inventory Microservice** might handle listing for products plus operati
 
 ### C4 Model - Level 2 - Containers Diagram
 Putting all of it together, this is the Containers Diagram presenting the "blocks" that compound the Awesome Online Store:
-
+<a target="_blank" rel="noopener noreferrer" href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/Awesome%20Online%20Store/conteiners.svg">
  <figure>
     <img src="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/Awesome%20Online%20Store/conteiners.svg" />
   <figcaption><a href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/Awesome%20Online%20Store/conteiners.puml">context.puml on github</a></figcaption>
 </figure>
+</a>
 
 #### Containers
 Besides the Microservices identified above, you can see some other containers:
