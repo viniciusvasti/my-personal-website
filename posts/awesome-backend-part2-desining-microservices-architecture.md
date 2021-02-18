@@ -28,7 +28,7 @@ The functional flowchart of the app discussed on part 1 ended up like this:
   <figcaption><a href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/checkout-flow-chart.puml">checkout-flow-chart.puml on github</a></figcaption>
 </figure>
 
-First off all, I will identify the subject over any operation is executed:
+First off all, I will identify the subjects over any operation is executed:
 - Add **product** to **cart**
 - Choose a **payment method**
 - Submit an **order**
