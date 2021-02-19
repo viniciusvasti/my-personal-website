@@ -49,7 +49,7 @@ Ordering products:
           }
       ],
       "payment": {
-          "payment-method": {
+          "paymentMethod": {
               "id": "string",
               "description": "string"
           },
@@ -90,7 +90,7 @@ Listing orders:
             }
         ],
         "payment": {
-            "payment-method": {
+            "paymentMethod": {
                 "id": "string",
                 "description": "string"
             },
@@ -116,7 +116,7 @@ Fetching an order:
           }
       ],
       "payment": {
-          "payment-method": {
+          "paymentMethod": {
               "id": "string",
               "description": "string"
           },
