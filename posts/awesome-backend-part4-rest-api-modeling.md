@@ -88,7 +88,9 @@ Listing orders:
         ],
         "payment": {
           "paymentMethod": "string"
-        }
+        },
+        "approved": "boolean",
+        "paymentProcessed": "boolean"
       }
   ]
   ```
@@ -111,7 +113,9 @@ Fetching an order:
       ],
       "payment": {
           "paymentMethod": "string"
-      }
+      },
+        "approved": "boolean",
+        "paymentProcessed": "boolean"
   }
   ```
 - **Failed Response Status:** 404
