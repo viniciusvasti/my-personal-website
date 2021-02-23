@@ -7,7 +7,7 @@ tags: 'java,spring boot,logging'
 ---
 Hi, everyone!
 if you have already had any experience with production software, you know the importance of logging for an app.  
-For web applications, we usually have multithreaded instances, receiving several requests.  
+For web applications, we usually have multi threaded instances, receiving several requests.  
 It could be tricky to analyze several log lines for a specific execution. E.g. POST request for a specific resource performed by a specific user at certain timestamp.
 A good solution is to have a Correlation ID for a execution flow.
 Let me show how to do that in a Spring Boot App.
@@ -23,7 +23,7 @@ Let me show how to do that in a Spring Boot App.
 Let me show a simple example of some lines of log for a request:
 ```bash
 2021-02-23 13:52:11.386  INFO 39105 --- OrderCommandController       : Receiving HTTP POST with body CreateOrderDTO[customerName=string, products=[ProductDTO[sku=0, name=string, price=0.0]], payment=PaymentDTO[paymentMethod=CREDIT]]
-2021-02-23 13:52:11.390  INFO 39105 --- OrderRequestServiceImpl  : Createing order: CreateOrderDTO[customerName=string, products=[ProductDTO[sku=0, name=string, price=0.0]], payment=PaymentDTO[paymentMethod=CREDIT]]
+2021-02-23 13:52:11.390  INFO 39105 --- OrderRequestServiceImpl  : Creating order: CreateOrderDTO[customerName=string, products=[ProductDTO[sku=0, name=string, price=0.0]], payment=PaymentDTO[paymentMethod=CREDIT]]
 2021-02-23 13:52:11.392  INFO 39105 --- OrderRepository      : Persisting Order(id=8e6dd1ad-8f9e-4002-9f4b-4faceb2a2b5e, customerName=string, products=[Product(sku=0, name=string, price=0.0)], payment=Payment(paymentMethod=CREDIT))
 2021-02-23 13:52:11.641  INFO 39105 --- OrderRepository      : Success while persisting
 2021-02-23 13:52:11.642  INFO 39105 --- KafkaOrderReceivedProducer   : Publishing event OrderReceivedEventDTO(id=8e6dd1ad-8f9e-4002-9f4b-4faceb2a2b5e, customerName=string, products=[OrderReceivedEventDTO.Product(sku=0, name=string, price=0.0)], payment=OrderReceivedEventDTO.Payment(paymentMethod=CREDIT))
@@ -64,14 +64,14 @@ public class RequestLoggingFilter implements Filter {
 }
 ```
 
-In the code above, I'm filtering Servlet requests, trying to retrive a CID from headers and if no present, generating one.  
+In the code above, I'm filtering Servlet requests, trying to retrieve a CID from headers and if no present, generating one.  
 Then I put the CID on MDC*, let the request go forward and finally, clear the CID (it happens on the same thread).
 
 ### The result
 Executing the same action, note the new log field `CID=48eaba9a-dca9-44da-93e2-f95d93652846`:
 ```bash
 2021-02-23 15:20:12.308  INFO CID=48eaba9a-dca9-44da-93e2-f95d93652846 47388 --- OrderCommandController       : Receiving HTTP POST with body CreateOrderDTO[customerName=string, products=[ProductDTO[sku=0, name=string, price=0.0]], payment=PaymentDTO[paymentMethod=CREDIT]]
-2021-02-23 15:20:12.312  INFO CID=48eaba9a-dca9-44da-93e2-f95d93652846 47388 --- OrderRequestServiceImpl  : Createing order: CreateOrderDTO[customerName=string, products=[ProductDTO[sku=0, name=string, price=0.0]], payment=PaymentDTO[paymentMethod=CREDIT]]
+2021-02-23 15:20:12.312  INFO CID=48eaba9a-dca9-44da-93e2-f95d93652846 47388 --- OrderRequestServiceImpl  : Creating order: CreateOrderDTO[customerName=string, products=[ProductDTO[sku=0, name=string, price=0.0]], payment=PaymentDTO[paymentMethod=CREDIT]]
 2021-02-23 15:20:12.314  INFO CID=48eaba9a-dca9-44da-93e2-f95d93652846 47388 --- OrderRepository      : Persisting Order(id=0f14d935-c7e2-431e-8624-e1f359aa69ea, customerName=string, products=[Product(sku=0, name=string, price=0.0)], payment=Payment(paymentMethod=CREDIT))
 2021-02-23 15:20:12.336  INFO CID=48eaba9a-dca9-44da-93e2-f95d93652846 47388 --- OrderRepository      : Success while persisting
 2021-02-23 15:20:12.337  INFO CID=48eaba9a-dca9-44da-93e2-f95d93652846 47388 --- KafkaOrderReceivedProducer   : Publishing event OrderReceivedEventDTO(id=0f14d935-c7e2-431e-8624-e1f359aa69ea, customerName=string, products=[OrderReceivedEventDTO.Product(sku=0, name=string, price=0.0)], payment=OrderReceivedEventDTO.Payment(paymentMethod=CREDIT))
