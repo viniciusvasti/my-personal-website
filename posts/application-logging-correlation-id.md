@@ -32,7 +32,7 @@ Let me show a simple example of some lines of log for a request:
 It's easy to follow this execution flow. But if it was running in a cluster, with several instances, receiving hundreds of requests for second, it would be very difficult to figure it out which order the last line (Success while publishing) is associated with.
 
 ### The solution
-First thing is to intercept every request and set a CID (Correlation ID) if it's not provided by the client as an HTTP request heade:
+First thing is to intercept every request and set a CID (Correlation ID) if it's not provided by the client as an HTTP request header:
 ```java
 @Component
 public class RequestLoggingFilter implements Filter {
