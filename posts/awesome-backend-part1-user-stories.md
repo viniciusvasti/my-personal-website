@@ -37,17 +37,17 @@ This is the happy path, but things may always not work as expected:
 
 There are also an improvement in the flow I can see: the last three actions may occur at same time, in parallel.
 
-Including this details to the flow, this is the result:  
+Including these details to the flow, this is the result:  
 <a target="_blank" rel="noopener noreferrer" href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/checkout-flow-chart.svg">
- <figure>
-    <img src="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/checkout-flow-chart.svg" />
-  <figcaption><a href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/checkout-flow-chart.puml">checkout-flow-chart.puml on github</a></figcaption>
-</figure>
+    <figure>
+        <img src="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/checkout-flow-chart.svg" />
+      <figcaption><a href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/checkout-flow-chart.puml">checkout-flow-chart.puml on github</a></figcaption>
+    </figure>
 </a>
 
 ### User Stories
 Now that we have mapped the application flow, we are able to write user stories.  
-I'm gonna follow [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development#Behavioral_specifications) way of describing how the app should behave:
+I'm going to follow [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development#Behavioral_specifications) way of describing how the app should behave:
 
 **Feature**: Awesome Online Store product ordering.  
 **As an** Awesome Online Store's customer...  
@@ -65,11 +65,12 @@ I'm gonna follow [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development
 - **Then:** send user an email apologizing for the inconvenient.
 
 **Scenario 3**
-- **Given:** a list of products available on stock **and** a non compliant payment method...
+- **Given:** a list of products available on stock **and** a noncomplying payment method...
 - **When:** the customer submits the order...
 - **Then:** send user an email informing that his payment was denied by the payment broker and the reason.
 
-Obviously, this is an exercise and the focus is on software. There a lot of details to consider for a real ordering process.
+Obviously, this is an exercise, the focus here is on software. There a lot of details to consider 
+for a real ordering process.
 
 ### C4 Model - Level 1 - Context Diagram
 It's time to assume the Software Architect role.  

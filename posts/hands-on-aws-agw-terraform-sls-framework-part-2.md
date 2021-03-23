@@ -7,7 +7,8 @@ tags: 'javascript,nodejs,serverless,lambda,aws,aws api gateway,rest'
 ---
 Hi, everyone!
 For this "Hands on!" we're building a REST API with **AWS API Gateway**, provisioned with **Terraform** and backed by **AWS Lambda** built with **Serverless Framework**.  
-The REST API will allow us to send SMS Messages using **AWS SNS**. Sounds like a lot of things, but it's no that lot of working.  
+The REST API will allow us to send SMS Messages using **AWS SNS**. Sounds like a lot of things, 
+but it's not that lot of working.  
 For this part 2, we'll code the backend with Serverless Framework and for part 1 and 3:
 
 <a href="../posts/hands-on-aws-agw-terraform-sls-framework-part-1">Part 1: provisioning an AWS API Gateway with Terraform</a>  
@@ -22,13 +23,14 @@ For this part 2, we'll code the backend with Serverless Framework and for part 1
 - [AWS SNS](https://aws.amazon.com/sns/): AWS Simple Notification Service that, among other types of notifications, allow us to send SMS for a phone number;
 - [Terraform](https://www.terraform.io/): IaC (Infrastructure as Code) tool that allow us to provision cloud resources supporting several cloud providers;
 - [Serverless Framework](https://www.serverless.com/): a Framework for support building and deploying serverless functions grouped as a Serverless Service, allowing also the provisioning of resources need for these functions;
-- [NodeJS](https://nodejs.org/): JS runtime where our JavaScript lambda functions gonna be running;
+- [NodeJS](https://nodejs.org/): JS runtime where our JavaScript lambda functions going to be running;
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript): Of course, the programing language we'll write our lambda.
 
 ---
 
 ### Serverless Framework
-The purpose of [Serverless Framework](https://www.serverless.com) is provide a framework development, test, build, deploy and secure serverless applications, grouping functions in a service. Supporting several Cloud Providers as well.
+The purpose of [Serverless Framework](https://www.serverless.com) is to provide a framework 
+development, test, build, deploy and secure serverless applications, grouping functions in a service. Supporting several Cloud Providers as well.
 
 Install it following instructions on https://www.serverless.com/framework/docs/getting-started and...
 Hands on!
@@ -79,7 +81,9 @@ package:
     - .eslintrc.js
 ```
 
-`provider.apiGateway.restApiId` and `provider.apiGateway.restApiRootResourceId`: references for the API and the resource path that should be parent of any resource paths created by this service, respectively.  
+`provider.apiGateway.restApiId` and `provider.apiGateway.restApiRootResourceId`: references for 
+the API and the resource path that should be a parent of any resource paths created by this 
+service, respectively.  
   We can look for it on the API in AWS Console like this:  
 ../images/posts/hands-on-aws-agw-terraform-sls-framework-part-2/aws_api_gateway_id.png
 
@@ -97,7 +101,7 @@ To do that, we need to start the NPM Package Manager and install the AWS SDK:
 ```sh
 $ npm init && npm i aws-sdk --save
 ```
-And the `handler.js` file should be like this:  
+The `handler.js` file should be like this:  
 ```javascript
 const AWS = require("aws-sdk");
 
@@ -142,7 +146,7 @@ provider:
     - 'arn:aws:iam::aws:policy/AmazonSNSFullAccess'...
 ```
 
-Testing the api again, this time passing the JSON below, a SMS should be sent to the phone number.
+Testing the api again, this time passing the JSON below, an SMS should be sent to the phone number.
 ```json
 {
     "phoneNumber": "11912345678",

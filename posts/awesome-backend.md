@@ -13,20 +13,22 @@ tags: 'architecture,java,spring boot,apache kafka, microservices,docker,kubernet
 
 ---
 Hi, everyone!
-This is the start of a series with no end (because I'm always learn things and I'll try them out on this series).  
-I'm gonna put in practice some knowledge about Software Engineering/Architecture, DevOps, SRE...  
+This is the start of a series with no end (because I'm always learning new things, and I'll try them 
+out on this series).  
+I'm going to put in practice some knowledge about Software Engineering/Architecture, DevOps, SRE...  
 The motivations for this are:
 - Show hard skills;
 - Build a git repository of a modern and complete project;
-- Put in practice some concepts I know (like DevOps) but I have not opportunity to use in my job;
+- Put in practice some concepts I know (like DevOps), but I have not opportunity to use in my job;
 - Share knowledge with other developers and the future me haha.
 
-This post will be fixed on top of posts lists and it's gonna be update whenever a new post of the series is released.
+This post will be fixed on top of posts' list, and it's going to be updated whenever a new post of 
+the series is released.
 
 ---
-### What I'm gonna build
+### What I'm going to build
 I will be building a microservices based System for supporting an unreal online store to sale it's products.
-I may or may not build a simple PWA to emulated the store's web app.
+I may or may not build a simple PWA to emulate the store's web app.
 The architecture should be modern, scalable, observable, secure and fault tolerant.
 
 ---

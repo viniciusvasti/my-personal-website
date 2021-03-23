@@ -8,8 +8,8 @@ tags: 'java,spring boot,logging'
 Hi, everyone!
 if you have already had any experience with production software, you know the importance of logging for an app.  
 For web applications, we usually have multi threaded instances, receiving several requests.  
-It could be tricky to analyze several log lines for a specific execution. E.g. POST request for a specific resource performed by a specific user at certain timestamp.
-A good solution is to have a Correlation ID for a execution flow.
+It could be tricky to analyze several log lines for a specific execution. E.g. POST request for a specific resource performed by a specific user at a certain timestamp.
+A good solution is to have a Correlation ID for an execution flow.
 Let me show how to do that in a Spring Boot App.
 
 ---
@@ -29,7 +29,8 @@ Let me show a simple example of some lines of log for a request:
 2021-02-23 13:52:11.642  INFO 39105 --- KafkaOrderReceivedProducer   : Publishing event OrderReceivedEventDTO(id=8e6dd1ad-8f9e-4002-9f4b-4faceb2a2b5e, customerName=string, products=[OrderReceivedEventDTO.Product(sku=0, name=string, price=0.0)], payment=OrderReceivedEventDTO.Payment(paymentMethod=CREDIT))
 2021-02-23 13:52:12.364  INFO 39105 --- KafkaOrderReceivedProducer   : Success while publishing
 ```
-It's easy to follow this execution flow. But if it was running in a cluster, with several instances, receiving hundreds of requests for second, it would be very difficult to figure it out which order the last line (Success while publishing) is associated with.
+It's easy to follow this execution flow, but if it was running in a cluster, with several 
+instances, receiving hundreds of requests for second, it would be very difficult to figure it out which order the last line (Success while publishing) is associated with.
 
 ### The solution
 First thing is to intercept every request and set a CID (Correlation ID) if it's not provided by the client as an HTTP request header:
@@ -79,8 +80,8 @@ Executing the same action, note the new log field `CID=48eaba9a-dca9-44da-93e2-f
 ```
 Now it is easy to correlate log lines for a single process execution and filter log by the CID for better visualization of the application flow.  
 
-But note also the last log line. It has no CID, because it is executed in an async operation.  
-As a said early, the MDC scope is the thread, but the last line happens in another thread. Thus we have a tricky improvement to work with.
+Note also the last log line. It has no CID, because it is executed in an async operation.  
+As a said early, the MDC scope is the thread, but the last line happens in another thread. Thus, we have a tricky improvement to work with.
 
 *[Mapped Diagnostic Context](http://logback.qos.ch/manual/mdc.html)
 

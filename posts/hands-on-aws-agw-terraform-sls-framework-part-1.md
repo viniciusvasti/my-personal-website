@@ -7,7 +7,8 @@ tags: 'terraform,aws,aws api gateway,rest api'
 ---
 Hi, everyone!
 For this "Hands on!" we're going to build a REST API with **AWS API Gateway**, provisioned with **Terraform** and backed by **AWS Lambda** built with **Serverless Framework**.  
-The REST API will allow us to send SMS Messages using **AWS SNS**. Sounds like a lot of things, but it's no that lot of working.  
+The REST API will allow us to send SMS Messages using **AWS SNS**. Sounds like a lot of things, 
+but it's not that lot of working.  
 For this part 1, we'll provision our API Gateway with Terraform and for part 2 and 3:
 
 <a href="../posts/hands-on-aws-agw-terraform-sls-framework-part-2">Part 2: coding the backend with Serverless Framework</a>  
@@ -22,7 +23,7 @@ For this part 1, we'll provision our API Gateway with Terraform and for part 2 a
 - [AWS SNS](https://aws.amazon.com/sns/): AWS Simple Notification Service that, among other types of notifications, allow us to send SMS for a phone number;
 - [Terraform](https://www.terraform.io/): IaC (Infrastructure as Code) tool that allow us to provision cloud resources supporting several cloud providers;
 - [Serverless Framework](https://www.serverless.com/): a Framework for support building and deploying serverless functions grouped as a Serverless Service, allowing also the provisioning of resources need for these functions;
-- [NodeJS](https://nodejs.org/): JS runtime where our JavaScript lambda functions gonna be running;
+- [NodeJS](https://nodejs.org/): JS runtime where our JavaScript lambda functions going to be running;
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript): Of course, the programing language we'll write our lambda.
 
 ---
@@ -30,15 +31,17 @@ For this part 1, we'll provision our API Gateway with Terraform and for part 2 a
 ### Why Terraform, since Serverless Framework itself can provision AWS resources?
 Well, it's very common to have an API Gateway serving different backend services.  
 Ex: endpoint X points to a serverless function, endpoint Y points to Java Spring Boot Microservice, endpoint Z points to third-party API.  
-If the API Gateway gets provisioned by the serverless Service, it's infrastructure code gonna be highly coupled to this service and you need to implement the other types of integrations using this service as a proxy (creating more lambdas and increasing the infrastructure cost and complexity).  
-Also, if you destroy this Service, the API Gateway gonna be destroyed too.
+If the API Gateway gets provisioned by the serverless Service, it's infrastructure code going to 
+be highly coupled to this service, then you need to implement the other types of integrations using 
+this service as a proxy (creating more lambdas and increasing the infrastructure cost and complexity).  
+Also, if you destroy this Service, the API Gateway going to be destroyed too.
 
 So, hands on!
 
 ### Terraform AWS API Gateway provisioning
 If haven't Terraform installed, do it: https://www.terraform.io/downloads.html.  
 When provisioning resources, the docs helps a lot: https://www.terraform.io/docs/providers/aws/index.html.  
-Nobody should try to memorize the code for the whole bunch of services AWS provides.
+Nobody should try to memorize the code for a bunch of services AWS provides.
 
 First, we need set the cloud provider configurations.  
 Let's create file `provider.tf` like this:
@@ -51,10 +54,11 @@ provider “aws” {
     secret_key = "your-secret-key” 
 }
 ```
-We are telling terraform that our provider is AWS and we want provision resources on `us-east-1` region.
+We are telling terraform that our provider is AWS, and we want provision resources on 
+`us-east-1` region.
 We're also setting aws credentials having the roles and policies needed to manage API Gateway (we could set the credentials as environment variables as well).
 I's important set the version of terraform aws plugin to avoid upgrades with breaking changes issues.
-Now, we can init terraform in this project running in terminal:  
+Now, we can start terraform in this project running in terminal:  
 ```sh
 $ terraform init
 ```  
@@ -76,7 +80,8 @@ resource "aws_api_gateway_rest_api" "my_api_gateway" {
   
 The content inside the block refers to attributes of the API Gateway. You can look at AWS API Gateway if you are not familiar.
 
-We can now execute the command below to check what Terraform gonna do after we apply the provisioning plan:  
+We can now execute the command below to check what Terraform is going to do after we apply the 
+provisioning plan:  
 ```sh
 $ terraform plan
 ```  
@@ -102,22 +107,22 @@ Terraform will perform the following actions:
     }
 Plan: 1 to add, 0 to change, 0 to destroy.
 ```
-As we can see on the last line, Terraform gonna add 1 resource, change none and destroy none.  
+As we can see on the last line, Terraform going to add 1 resource, change none and destroy none.  
 It's not guaranteed that this plan will be exactly the same applied. So we could use `$ terraform plan -out`, but this plan is pretty simple.  
 To really apply the changes, the command is:
 ```sh
 $ terraform apply
 ```  
-Then exactly plan to be executed will be presented again and you can answer `yes`.  
+Then exactly plan to be executed will be presented again. You can answer `yes`.  
 Going to AWS Console and looking for API Gateway Resource (region us-east-1), we can see the API created:
 
 ../images/posts/hands-on-aws-agw-terraform-sls-framework-part-1/aws_api_gateway.png
 
-But clicking on it, there's no api resources paths:
+However, clicking on it, there's no api resources paths:
 
 ../images/posts/hands-on-aws-agw-terraform-sls-framework-part-1/aws_api_gateway_no_paths.png
 
-Let's define that our API base path gonna be `<api-url>/my-api/v1`.
+Let's define that our API base path going to be `<api-url>/my-api/v1`.
 Back to Terraform files, we add this code:
 ```java
 # api-gateway.tf
@@ -143,7 +148,7 @@ resource "aws_api_gateway_resource" "v1" {
 - `parent_id`: the id of parent path, which is the root "/" of the API Gateway;
 - `path_part`: the path part we want to create.
 
-Note that for "v1" resource, the parent_id is the id of "my_api" resource, thus the complete path gonna be "/my-api/v1".  
+Note that for "v1" resource, the parent_id is the id of "my_api" resource, thus the complete path going to be "/my-api/v1".  
 Running apply again:
 ```sh
 $ terraform apply

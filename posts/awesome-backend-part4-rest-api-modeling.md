@@ -22,7 +22,8 @@ So, hands on!
 ---
 
 ### The API Base Path
-Usually, the base path url of an API is consisted of its DNS and the API version. There are different approaches to versioning an API, including in path is the one I rather.
+Usually, the base path url of an API is consisted of its DNS and API version. There are 
+different approaches to versioning an API, including in the path is the one I rather.
 I'm thinking on `awesome-online-store.com/api/v1`. I decided to add `/api` thus I can reuse the DNS of the Web App.
 
 
