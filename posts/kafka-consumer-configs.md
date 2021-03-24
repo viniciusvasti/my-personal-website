@@ -6,7 +6,7 @@ tags: 'apache kafka'
 
 ---
 Hi, everyone!
-In this post I'm going to discuss main configurations for a Kafka Producer
+In this post I'm going to discuss main configurations for a Kafka Consumer
 
 ---
 
@@ -17,7 +17,7 @@ In this post I'm going to discuss main configurations for a Kafka Producer
 
 A Consumer is a service that reads (consumes) messages from one or more Kafka Topics.  
 
-## Important Configs for a Producer
+## Important Configs for a Consumer
 
 ### group.id
 If you want more than one instance of a consumer service, all the instances needs to have the same `group.id` to be considered as one unique consumer by the server.  
