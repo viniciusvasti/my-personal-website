@@ -86,3 +86,9 @@ After this time is elapsed, it will retry or fail.
 ### retry.backoff.ms
 The delay between retries for failed message reading actions.  
 `Default: 100`
+
+---
+
+### Related Posts
+- <a href="../posts/kafka-producer-configs">Apache Kafka Producer main configs for Resilience, Performance and Consistency</a>  
+- <a href="../posts/kafka-topic-configs">Apache Kafka Topic main configs for Resilience, Performance and Consistency</a>

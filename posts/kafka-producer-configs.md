@@ -64,3 +64,9 @@ If order is important, set it to 1.
 It sets the amount of time to wait until resend failed requests.  
 This is very useful in scenarios of unavailability, since it could be more effective to wait a little before trying again.  
 `Default: 100`
+
+---
+
+### Related Posts
+- <a href="../posts/kafka-consumer-configs">Apache Kafka Consumer main configs for Resilience, Performance and Consistency</a>  
+- <a href="../posts/kafka-topic-configs">Apache Kafka Topic main configs for Resilience, Performance and Consistency</a>
