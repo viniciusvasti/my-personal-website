@@ -15,7 +15,7 @@ In this post I'm going to discuss main configurations for a Kafka Producer
 
 ---
 
-A producer is a service that posts (produces) as message to one or more Kafka Topics.  
+A producer is a service that sends (produces) messages to one or more Kafka Topics.  
 
 ## Important Configs for a Producer
 
