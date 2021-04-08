@@ -6,6 +6,31 @@ import Date from "../components/date";
 import utilStyles from "../styles/utils.module.css";
 import { getSortedPostsData } from "../lib/posts";
 
+const PostList = ({ children }) => {
+    return <div>{children}</div>;
+};
+
+const PostListItem = ({ id, title, date, tags }) => {
+    return (
+        <Link href={`/posts/${id}`}>
+            <div className={utilStyles.listItem}>
+                {title}
+                <br />
+                <small className={utilStyles.lightText}>
+                    <Date dateString={date} />
+                </small>{" "}
+                {tags.split(",").map((tag) => (
+                    <>
+                        <TagLabel backgroundColor="#AAA" textColor="#EEE">
+                            {tag}
+                        </TagLabel>{" "}
+                    </>
+                ))}
+            </div>
+        </Link>
+    );
+};
+
 export default function Home({ allPostsData }) {
     return (
         <Layout home>
@@ -16,30 +41,16 @@ export default function Home({ allPostsData }) {
                 className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}
             >
                 <h2 className={utilStyles.headingLg}>Blog</h2>
-                <ul className={utilStyles.list}>
+                <PostList className={utilStyles.list}>
                     {allPostsData.map(({ id, date, title, tags }) => (
-                        <li className={utilStyles.listItem} key={id}>
-                            <Link href={`/posts/${id}`}>
-                                <a>{title}</a>
-                            </Link>
-                            <br />
-                            <small className={utilStyles.lightText}>
-                                <Date dateString={date} />
-                            </small>{" "}
-                            {tags.split(",").map((tag) => (
-                                <>
-                                    <TagLabel
-                                        backgroundColor="#AAA"
-                                        textColor="#EEE"
-                                    >
-                                        {tag}
-                                    </TagLabel>
-                                    {" "}
-                                </>
-                            ))}
-                        </li>
+                        <PostListItem
+                            id={id}
+                            title={title}
+                            date={date}
+                            tags={tags}
+                        />
                     ))}
-                </ul>
+                </PostList>
             </section>
         </Layout>
     );
