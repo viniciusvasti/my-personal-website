@@ -6,26 +6,27 @@ import Date from "../components/date";
 import utilStyles from "../styles/utils.module.css";
 import { getSortedPostsData } from "../lib/posts";
 
-const PostList = ({ children }) => {
-    return <div>{children}</div>;
+const PostList = ({ className, children }) => {
+    return <div className={className}>{children}</div>;
 };
 
 const PostListItem = ({ id, title, date, tags }) => {
     return (
         <Link href={`/posts/${id}`}>
             <div className={utilStyles.listItem}>
-                {title}
-                <br />
-                <small className={utilStyles.lightText}>
-                    <Date dateString={date} />
-                </small>{" "}
-                {tags.split(",").map((tag) => (
-                    <>
-                        <TagLabel backgroundColor="#AAA" textColor="#EEE">
-                            {tag}
-                        </TagLabel>{" "}
-                    </>
-                ))}
+                <div>{title}</div>
+                <div>
+                    <small className={utilStyles.lightText}>
+                        <Date dateString={date} />
+                    </small>{" "}
+                    {tags.split(",").map((tag) => (
+                        <>
+                            <TagLabel backgroundColor="#AAA" textColor="#EEE">
+                                {tag}
+                            </TagLabel>{" "}
+                        </>
+                    ))}
+                </div>
             </div>
         </Link>
     );
@@ -40,7 +41,6 @@ export default function Home({ allPostsData }) {
             <section
                 className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}
             >
-                <h2 className={utilStyles.headingLg}>Blog</h2>
                 <PostList className={utilStyles.list}>
                     {allPostsData.map(({ id, date, title, tags }) => (
                         <PostListItem
