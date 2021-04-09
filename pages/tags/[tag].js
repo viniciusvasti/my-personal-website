@@ -1,10 +1,10 @@
 import Head from "next/head";
-import Layout, { siteTitle } from "../components/layout";
-import TagLabel from "../components/tagLabel";
+import Layout, { siteTitle } from "../../components/layout";
+import TagLabel from "../../components/tagLabel";
 import Link from "next/link";
-import Date from "../components/date";
-import utilStyles from "../styles/utils.module.css";
-import { getSortedPostsData } from "../lib/posts";
+import Date from "../../components/date";
+import utilStyles from "../../styles/utils.module.css";
+import { getSortedPostsData, getAllPostsTags } from "../../lib/posts";
 
 const PostList = ({ className, children }) => {
     return <div className={className}>{children}</div>;
@@ -32,12 +32,15 @@ const PostListItem = ({ id, title, date, tags }) => {
     );
 };
 
-export default function Home({ allPostsData }) {
+export default function Home({ allPostsData, tag }) {
     return (
         <Layout home>
             <Head>
                 <title>{siteTitle}</title>
             </Head>
+            <TagLabel backgroundColor="#AAA" textColor="#EEE">
+                {tag}
+            </TagLabel>
             <section
                 className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}
             >
@@ -57,11 +60,20 @@ export default function Home({ allPostsData }) {
     );
 }
 
-export async function getStaticProps() {
-    const allPostsData = getSortedPostsData();
+export async function getStaticPaths() {
+    const paths = getAllPostsTags();
+    return {
+        paths,
+        fallback: false,
+    };
+}
+
+export async function getStaticProps({ params }) {
+    const allPostsData = getSortedPostsData(params.tag);
     return {
         props: {
             allPostsData,
+            tag: params.tag,
         },
     };
 }

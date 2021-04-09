@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Head from "next/head";
 import Layout from "../../components/layout";
 import Date from "../../components/date";
 import TagLabel from "../../components/tagLabel";
 import utilStyles from "../../styles/utils.module.css";
 import { getAllPostIds, getPostData } from "../../lib/posts";
-
 
 export default function Post({ postData }) {
     return (
