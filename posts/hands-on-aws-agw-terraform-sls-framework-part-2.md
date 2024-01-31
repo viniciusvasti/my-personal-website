@@ -84,8 +84,8 @@ package:
 `provider.apiGateway.restApiId` and `provider.apiGateway.restApiRootResourceId`: references for 
 the API and the resource path that should be a parent of any resource paths created by this 
 service, respectively.  
-  We can look for it on the API in AWS Console like this:  
-../images/posts/hands-on-aws-agw-terraform-sls-framework-part-2/aws_api_gateway_id.png
+  We can look for it on the API in the AWS Console like this:  
+![](../images/posts/hands-on-aws-agw-terraform-sls-framework-part-2/aws_api_gateway_id.png)
 
 Now let's deploy this to AWS running:
 ```sh
@@ -94,7 +94,7 @@ $ sls deploy
 
 If everything is ok, we should see on API Console the new resources `/sms` with a POST method.  
 We can test it with Postman ou directly on Console:  
-../images/posts/hands-on-aws-agw-terraform-sls-framework-part-2/aws_api_gateway_sms_test.png
+![](../images/posts/hands-on-aws-agw-terraform-sls-framework-part-2/aws_api_gateway_sms_test.png)
 
 Once it's working, let's code the handler to send the SMS using Amazon SNS.  
 To do that, we need to start the NPM Package Manager and install the AWS SDK:

@@ -116,11 +116,11 @@ $ terraform apply
 Then exactly plan to be executed will be presented again. You can answer `yes`.  
 Going to AWS Console and looking for API Gateway Resource (region us-east-1), we can see the API created:
 
-../images/posts/hands-on-aws-agw-terraform-sls-framework-part-1/aws_api_gateway.png
+![](../images/posts/hands-on-aws-agw-terraform-sls-framework-part-1/aws_api_gateway.png)
 
 However, clicking on it, there's no api resources paths:
 
-../images/posts/hands-on-aws-agw-terraform-sls-framework-part-1/aws_api_gateway_no_paths.png
+![](../images/posts/hands-on-aws-agw-terraform-sls-framework-part-1/aws_api_gateway_no_paths.png)
 
 Let's define that our API base path going to be `<api-url>/my-api/v1`.
 Back to Terraform files, we add this code:
@@ -155,7 +155,7 @@ $ terraform apply
 ```  
 We should see on AWS Console three API resources ("/", "my-api" and "v1"):
 
-../images/posts/hands-on-aws-agw-terraform-sls-framework-part-1/aws_api_gateway_with_paths.png
+![](../images/posts/hands-on-aws-agw-terraform-sls-framework-part-1/aws_api_gateway_with_paths.png)
 
 <br />
 <br />
