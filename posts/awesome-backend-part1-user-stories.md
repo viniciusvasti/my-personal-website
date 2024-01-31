@@ -7,16 +7,15 @@ tags: 'BDD,architecture,c4model'
 ---
 
 Hi, everyone!
-This is the part 1 of Awesome Backend series.
-More info at <a className="text-slate-700 hover:text-blue-400" href="../posts/awesome-backend">Awesome Backend - High Available, robust, modern, backend architecture hands on</a>  
-For this part, I'm going to write business use cases and present de first level of C4 Model
-
-So, hands on!
+This is part 1 of the Awesome Backend series.
+More info at <a className="text-slate-700 hover:text-blue-400" href="../posts/awesome-backend">Awesome Backend - High Available, robust, modern, backend architecture hands-on</a>  
+For this part, I'm going to write business use cases and present de first level of the C4 Model
+So, hands-on!
 
 ---
 
 ## About the tech stack
-- [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development) way of write User Stories;
+- [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development) way of writing User Stories;
 - [C4 Model](https://c4model.com/): A simple, easy to write, architecture diagram model;
 - [PlantUML](https://plantuml.com/): A component that allows to quickly write diagrams as code;
 
@@ -28,54 +27,53 @@ So let's think about the flow and possible scenarios the application should cove
 <a target="_blank" rel="noopener noreferrer" href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/happy-checkout-flow-chart.svg">
     <figure>
         <img src="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/happy-checkout-flow-chart.svg" />
-    <figcaption><a className="text-slate-700 hover:text-blue-400" href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/happy-checkout-flow-chart.puml">happy-checkout-flow-chart.puml on github</a></figcaption>
+    <figcaption><a className="text-slate-700 hover:text-blue-400" href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/happy-checkout-flow-chart.puml">happy-checkout-flow-chart.puml on GitHub</a></figcaption>
     </figure>
 </a>
 
 This is the happy path, but things may always not work as expected:
 - A product in the order may be sold out between the "add to cart" event and "order submitted" event;
 - The payment may be denied by the payment broker.
+There is also an improvement in the flow I can see: the last three actions may occur at the same time, in parallel.
 
-There are also an improvement in the flow I can see: the last three actions may occur at same time, in parallel.
-
-Including these details to the flow, this is the result:  
+Including these details in the flow, this is the result:  
 <a target="_blank" rel="noopener noreferrer" href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/checkout-flow-chart.svg">
     <figure>
         <img src="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/checkout-flow-chart.svg" />
-      <figcaption><a className="text-slate-700 hover:text-blue-400" href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/checkout-flow-chart.puml">checkout-flow-chart.puml on github</a></figcaption>
+      <figcaption><a className="text-slate-700 hover:text-blue-400" href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/checkout-flow-chart.puml">checkout-flow-chart.puml on GitHub</a></figcaption>
     </figure>
 </a>
 
 ### User Stories
-Now that we have mapped the application flow, we are able to write user stories.  
+Now that we have mapped the application flow, we can write user stories.  
 I'm going to follow [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development#Behavioral_specifications) way of describing how the app should behave:
 
 **Feature**: Awesome Online Store product ordering.  
 **As an** Awesome Online Store's customer...  
-**I want** to be able to order products of the store...  
+**I want** to be able to order products from the store...  
 **So that** I can enjoy the comfort of buying things without leaving home.
 
 **Scenario 1**
-- **Given:** a list of products available on stock **and** a compliant payment method...
+- **Given:** a list of products available in stock **and**** a compliant payment method...
 - **When:** the customer submits the order...
-- **Then:** decrease products stock **and** sends user an order confirmation email **and** trigger the shipment of order.
+- **Then:** decrease stock, send the user an order confirmation email, **and** trigger the shipment of the order.
 
 **Scenario 2**
-- **Given:** a list of products with one or more products of the list unavailable on stock **and** an accordant payment method...
+- **Given:** a list of products with one or more products of the list unavailable in stock **and** an accordant payment method...
 - **When:** the customer submits the order...
-- **Then:** send user an email apologizing for the inconvenient.
+- **Then:** send the user an email apologizing for the inconvenience.
 
 **Scenario 3**
-- **Given:** a list of products available on stock **and** a noncomplying payment method...
+- **Given:** a list of products available in stock **and** a noncomplying payment method...
 - **When:** the customer submits the order...
-- **Then:** send user an email informing that his payment was denied by the payment broker and the reason.
+- **Then:** send the user an email informing them that his payment was denied by the payment broker and the reason.
 
-Obviously, this is an exercise, the focus here is on software. There a lot of details to consider 
+This is an exercise, the focus here is on software. There are a lot of details to consider 
 for a real ordering process.
 
 ### C4 Model - Level 1 - Context Diagram
 It's time to assume the Software Architect role.  
-The Context Diagram of [C4 Model](https://c4model.com/) is really useful to contextualize the System aside other external Systems and actors.  
+The Context Diagram of [C4 Model](https://c4model.com/) is really useful to contextualize the System aside from other external Systems and actors.  
 It is useful for anyone, in a technical role or not, to have a view of how and who the System interacts with.
 
 <a target="_blank" rel="noopener noreferrer" href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/context.svg">
@@ -88,6 +86,6 @@ It is useful for anyone, in a technical role or not, to have a view of how and w
 ---
 
 That's it for now.  
-See you soon on next posts.
+See you soon on the next posts.
 
-See all posts series at <a className="text-slate-700 hover:text-blue-400" href="../posts/awesome-backend">Awesome Backend - High Available, robust, modern, backend architecture hands on</a>  
+See all posts series at <a className="text-slate-700 hover:text-blue-400" href="../posts/awesome-backend">Awesome Backend - High Available, robust, modern, backend architecture hands-on</a>  

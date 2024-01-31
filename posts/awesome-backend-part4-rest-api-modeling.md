@@ -7,29 +7,29 @@ tags: 'architecture,microservices,rest api'
 ---
 
 Hi, everyone!
-This is the part 4 of Awesome Backend series.
-More info at <a className="text-slate-700 hover:text-blue-400" href="../posts/awesome-backend">Awesome Backend - High Available, robust, modern, backend architecture hands on</a>  
+This is part 4 of the Awesome Backend series.
+More info at <a className="text-slate-700 hover:text-blue-400" href="../posts/awesome-backend">Awesome Backend - High Available, robust, modern, backend architecture hands-on</a>  
 For this part, I'm going to design the REST API requesting an Order for Awesome Online Store.  
 For now, it isn't going to be RESTFull, I will keep it simple.
 
-So, hands on!
+So, hands-on!
 
 ---
 
 ## About the tech stack
 - [REST API](https://restfulapi.net/);
-- [A really good guide for designing REST API's](https://restfulapi.net/resource-naming/) following a concise and clean structure of paths, resource names and so on.
+- [A really good guide for designing REST API's](https://restfulapi.net/resource-naming/) following a concise and clean structure of paths, resource names, and so on.
 
 ---
 
 ### The API Base Path
-Usually, the base path url of an API is consisted of its DNS and API version. There are 
+Usually, the base path URL of an API consists of its DNS and API version. There are 
 different approaches to versioning an API, including in the path is the one I rather.
-I'm thinking on `awesome-online-store.com/api/v1`. I decided to add `/api` thus I can reuse the DNS of the Web App.
+I'm thinking of `awesome-online-store.com/api/v1`. I decided to add `/api` thus I could reuse the DNS of the Web App.
 
 
 ### The API resources for each Microservice
-As showed before, I'm going to have and API Gateway exposing the API for clients.
+As shown before, I'm going to have an API Gateway exposing the API for clients.
 It acts as a proxy. So each request on a resource is directed to one of the Microservices:
 - `.../api/v1/order-management`: Orders Microservice;
 - `.../api/v1/payment-management`: Payments Microservice;
@@ -55,7 +55,7 @@ Ordering products:
       }
   }
   ```
-  Obviously this is not ok for real life, because it's easy to set fake products prices.
+  This is not ok for real life, because it's easy to set fake product prices.
 - **Success Response Status:** 201
 - **Response body:** 
   ```json
@@ -129,7 +129,7 @@ Fetching an order:
   ```
 
 ### The Payments API operations
-Listing available payments methods: 
+Listing available payment methods: 
 - **Method:** `GET`
 - **URI:** `.../api/v1/payment-management/payment-methods?active=true`
 - **Success Response Status:** 200
@@ -160,6 +160,6 @@ Listing available products:
 ---
 
 That's it for now.  
-See you soon on next posts.
+See you soon on the next posts.
 
-See all posts series at <a className="text-slate-700 hover:text-blue-400" href="../posts/awesome-backend">Awesome Backend - High Available, robust, modern, backend architecture hands on</a>  
+See all posts series at <a className="text-slate-700 hover:text-blue-400" href="../posts/awesome-backend">Awesome Backend - High Available, robust, modern, backend architecture hands-on</a>  

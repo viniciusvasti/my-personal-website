@@ -27,7 +27,7 @@ Changes that require generating a new API version
 - Removing a response header;
 - Removing a response body attribute;
 - Changing a parameter or attribute type, either on the request or response;
-- Increasing restrictions for as parameter, either a path, query string or body param. E.g. not accepting attribute `name` over 50 characters;
+- Increasing restrictions for as parameter, either a path, query string, or body param. E.g. not accepting the `name` attribute over 50 characters;
 Changing the default value of an optional parameter. E.g. default value for `payment-method` if it is not informed will be `credit`, but it used to be `debit`;
 - Adding a new HTTP Status Code response. For when there aren't any products in the bag, `GET products` used to return HTTP `200` and an empty array, but now it's going to return `404; Removing an HTTP Status Code response. E.g. opposite of the above example.
 

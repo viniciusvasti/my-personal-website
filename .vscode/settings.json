@@ -7,6 +7,26 @@
             "language": "markdown",
             "scheme": "file",
             "pattern": "posts/when-to-change-api-version.md"
+        },
+        {
+            "language": "markdown",
+            "scheme": "file",
+            "pattern": "posts/application-logging-correlation-id.md"
+        },
+        {
+            "language": "markdown",
+            "scheme": "file",
+            "pattern": "posts/awesome-backend-part1-user-stories.md"
+        },
+        {
+            "language": "markdown",
+            "scheme": "file",
+            "pattern": "posts/awesome-backend-part2-desining-microservices-architecture.md"
+        },
+        {
+            "language": "markdown",
+            "scheme": "file",
+            "pattern": "posts/awesome-backend-part4-rest-api-modeling.md"
         }
     ]
 }

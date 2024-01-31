@@ -9,8 +9,8 @@ tags: 'javascript,nodejs,serverless,terraform,lambda,aws,aws api gateway,rest ap
 Hi, everyone!
 For this "Hands on!" we're building a REST API with **AWS API Gateway**, provisioned with **Terraform** and backed by **AWS Lambda** built with **Serverless Framework**.  
 The REST API will allow us to send SMS Messages using **AWS SNS**. Sounds like a lot of things, 
-but it's not that lot of working.  
-For this part 3, we'll secure the API with OAUTH using AWS Cognito and for part 1 and 2:
+but it's not that lot of work.  
+For this part 3, we'll secure the API with OAuth using AWS Cognito, and for parts 1 and 2:
 
 <a className="text-slate-700 hover:text-blue-400" href="../posts/hands-on-aws-agw-terraform-sls-framework-part-1">Part 1: provisioning an AWS API Gateway with Terraform</a>  
 <a className="text-slate-700 hover:text-blue-400" href="../posts/hands-on-aws-agw-terraform-sls-framework-part-2">Part 2: coding the backend with Serverless Framework</a>
@@ -21,20 +21,20 @@ For this part 3, we'll secure the API with OAUTH using AWS Cognito and for part 
 - [AWS](https://aws.amazon.com/): Most popular Cloud provider. You need an account to follow this article properly;
 - [AWS API Gateway](https://aws.amazon.com/api-gateway/): AWS managed API Gateway that will expose our rest endpoints;
 - [AWS Lambda](https://aws.amazon.com/lambda/): serverless functions on AWS working as our backend;
-- [AWS SNS](https://aws.amazon.com/sns/): AWS Simple Notification Service that, among other types of notifications, allow us to send SMS for a phone number;
-- [Terraform](https://www.terraform.io/): IaC (Infrastructure as Code) tool that allow us to provision cloud resources supporting several cloud providers;
-- [Serverless Framework](https://www.serverless.com/): a Framework for support building and deploying serverless functions grouped as a Serverless Service, allowing also the provisioning of resources need for these functions;
+- [AWS SNS](https://aws.amazon.com/sns/): AWS Simple Notification Service that, among other types of notifications, allows us to send SMS for a phone number;
+- [Terraform](https://www.terraform.io/): IaC (Infrastructure as Code) tool that allows us to provision cloud resources supporting several cloud providers;
+- [Serverless Framework](https://www.serverless.com/): a Framework for support building and deploying serverless functions grouped as a Serverless Service, allowing also the provisioning of resources needed for these functions;
 - [NodeJS](https://nodejs.org/): JS runtime where our JavaScript lambda functions going to be running;
-- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript): Of course, the programing language we'll write our lambda.
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript): Of course, the programming language we'll write our lambda.
 
 ---
 
 ### AWS Cognito
 Cognito is an AWS resource that provides several patterns of authentication and authorization.  
-We are going to choose OAuth, in a very basic way, with the only purpose of see how to provision it with Terraform a set it to secure our API. For a production purpose, there are other details you should care about.
+We are going to choose OAuth, in a very basic way, with the only purpose of seeing how to provision it with Terraform a set it to secure our API. For a production purpose, there are other details you should care about.
 
 ### Setting project
-For secure and API through a combination of client and secret keys, we need to provision a Cognito User Pool, set a Domain, Resource Server and App Client
+For secure and API through a combination of client and secret keys, we need to provision a Cognito User Pool, set a Domain, Resource Server, and App Client
 
 Back to terraform files, create cognito.tf:
 
@@ -72,10 +72,10 @@ resource "aws_cognito_user_pool_client" "client" {
 }
 ```
 - `aws_cognito_user_pool`: creates a pool;
-- `aws_cognito_user_pool_domain`: defines the url that client application calls to authenticate. The url has the form https://\<domain\>.auth.\<aws region\>.amazoncognito.com/oauth2/token. Obviously, the domain should be unique between all amazon cognito domains in this region;
-- `aws_cognito_resource_server`: defines a server that protects the resources, allowing only requests with valid token to access them. The scope is the level of access. For example, you can create a scope of read and other for writing to resources;
-- `aws_cognito_user_pool_client`: here we configure a client for the pool, specifying allowed oauth flows and scopes. Note the `depends_on` telling terraform explicitly that it depends on another resource (since resource_server is not referenced in any attribute in this block, Terraform don't know that).  
-We also have to set an authorizer for the API provisioned on Part 1. Add this in `api-gateway.tf` file:
+- `aws_cognito_user_pool_domain`: defines the URL that the client application calls to authenticate. The URL has the form https://\<domain\>.auth.\<aws region\>.amazoncognito.com/oauth2/token. Obviously, the domain should be unique between all Amazon Cognito domains in this region;
+- `aws_cognito_resource_server`: defines a server that protects the resources, allowing only requests with valid tokens to access them. The scope is the level of access. For example, you can create a scope of reading and other for writing to resources;
+- `aws_cognito_user_pool_client`: here we configure a client for the pool, specifying allowed OAuth flows and scopes. Note the `depends_on` telling Terraform explicitly that it depends on another resource (since resource_server is not referenced in any attribute in this block, Terraform doesn't know that).  
+We also have to set an authorizer for the API provisioned in Part 1. Add this in `api-gateway.tf` file:
 
 ```java
 resource "aws_api_gateway_authorizer" "authorizer" {
@@ -85,13 +85,13 @@ resource "aws_api_gateway_authorizer" "authorizer" {
   provider_arns = [aws_cognito_user_pool.pool.arn]
 }
 ```
-With this, we going to have an authorizer associated with our API which can be set as the authorizer of any endpoint of that. We will reference the id of the authorizer in the http event of serverless function later:
+With this, we going to have an authorizer associated with our API which can be set as the authorizer of any endpoint of that. We will reference the ID of the authorizer in the HTTP event of the serverless function later:
 `$ terraform apply`
 
 On the Authorizers on AWS Console's Amazon API Gateway, we should see the authorizer created. We need its ID:  
 ![](../images/posts/hands-on-aws-agw-terraform-sls-framework-part-3/aws_api_gateway_authorizer_id.png)
 
-Back to Serverless Framework project, in `functions` attribute of `serverless.yml`, we set the authorizer like that:
+Back to the Serverless Framework project, in the `functions` attribute of `serverless.yml`, we set the authorizer like this:
 
 ```yaml
 functions:
@@ -107,14 +107,14 @@ functions:
             scopes:
               - my-api/sms
 ```
-Note the `scope` attribute, the same of `allowed_oauth_scopes` on `aws_cognito_user_pool_client` in `cognito.tf`.  
+Note the `scope` attribute, the same as `allowed_oauth_scopes` on `aws_cognito_user_pool_client` in `cognito.tf`.  
 
 Run `$ sls deploy` and let's test our API with Postman:  
 ![](../images/posts/hands-on-aws-agw-terraform-sls-framework-part-3/aws_api_gateway_authorizer_test.png)
 
 Oops! We got `401 Unauthorized`. Let's get a token now.  
-On AWS Console, go to `Cognito -> Manage User Pools -> my-api-user-pool`. On the left panel, click on App clients and lok for "client id" and "client secret". Convert "\<client id\>:\<client secret\>" to base64 and use it as a Basic header Authorizer.  
-The curl of the request should be like that:
+On AWS Console, go to `Cognito -> Manage User Pools -> my-api-user-pool`. On the left panel, click on App Clients and look for "client id" and "client secret". Convert "\<client id\>:\<client secret\>" to base64 and use it as a Basic header Authorizer.  
+The curl of the request should be like this:
 
 ```bash
 curl --location --request POST 'https://my-api-serverless.auth.us-east-1.amazoncognito.com/oauth2/token' \
@@ -122,7 +122,7 @@ curl --location --request POST 'https://my-api-serverless.auth.us-east-1.amazonc
 --header 'Content-Type: application/x-www-form-urlencoded' \
 --data-urlencode 'grant_type=client_credentials'
 ```
-The response should be a Json with access token:
+The response should be a JSON with an access token:
 
 ```json
 {
@@ -132,16 +132,16 @@ The response should be a Json with access token:
 }
 ```
 
-Setting the access token on the Authorization header os the request for the SMS API, it works fine again:  
+Setting the access token on the Authorization header of the request for the SMS API, it works fine again:  
 ![](../images/posts/hands-on-aws-agw-terraform-sls-framework-part-3/aws_api_gateway_authorizer_test_with_auth.png)
 
 ---
 
-That's it! We finished our API provisioned on AWS with Terraform, backed by AWS Lambda built with Serverless Framework and secured with Amazon Cognito.
+That's it! We finished our API provisioned on AWS with Terraform, backed by AWS Lambda built with Serverless Framework, and secured with Amazon Cognito.
 
 Full code here [viniciusvasti](https://github.com/viniciusvasti/aws-rest_api_gateway-terraform-serverless-training)  
 
-* Some details are different because an implemented this in portuguese before. So "my api" is "minha api" in the images, sorry for that.
+* Some details are different because I implemented this in Portuguese before. So "my api" is "minha api" in the images, sorry for that.
 
 ### Related Posts
 - <a className="text-slate-700 hover:text-blue-400" href="../posts/hands-on-aws-agw-terraform-sls-framework-part-1">AWS API Gateway + Terraform + Serverless Framework - Part 1</a>

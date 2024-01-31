@@ -7,11 +7,11 @@ tags: 'java,spring boot,logging'
 ---
 
 Hi, everyone!
-if you have already had any experience with production software, you know the importance of logging for an app.  
-For web applications, we usually have multi threaded instances, receiving several requests.  
+if you have already had any experience with production software, you know the importance of logging in for an app.  
+For web applications, we usually have multi-threaded instances, receiving several requests.  
 It could be tricky to analyze several log lines for a specific execution. E.g. POST request for a specific resource performed by a specific user at a certain timestamp.
 A good solution is to have a Correlation ID for an execution flow.
-Let me show how to do that in a Spring Boot App.
+Let me show you how to do that in a Spring Boot App.
 
 ---
 
@@ -32,10 +32,10 @@ Let me show a simple example of some lines of log for a request:
 2021-02-23 13:52:12.364  INFO 39105 --- KafkaOrderReceivedProducer   : Success while publishing
 ```
 It's easy to follow this execution flow, but if it was running in a cluster, with several 
-instances, receiving hundreds of requests for second, it would be very difficult to figure it out which order the last line (Success while publishing) is associated with.
+instances, receiving hundreds of requests per second, it would be very difficult to figure out which order the last line (Success while publishing) is associated with.
 
 ### The solution
-First thing is to intercept every request and set a CID (Correlation ID) if it's not provided by the client as an HTTP request header:
+The first thing is to intercept every request and set a CID (Correlation ID) if it's not provided by the client as an HTTP request header:
 
 ```java
 @Component
@@ -68,7 +68,7 @@ public class RequestLoggingFilter implements Filter {
 }
 ```
 
-In the code above, I'm filtering Servlet requests, trying to retrieve a CID from headers and if no present, generating one.  
+In the code above, I'm filtering Servlet requests, trying to retrieve a CID from headers and if not present, generating one.  
 Then I put the CID on MDC*, let the request go forward and finally, clear the CID (it happens on the same thread).
 
 ### The result
@@ -84,11 +84,10 @@ Executing the same action, note the new log field `CID=48eaba9a-dca9-44da-93e2-f
 ```
 Now it is easy to correlate log lines for a single process execution and filter log by the CID for better visualization of the application flow.  
 
-Note also the last log line. It has no CID, because it is executed in an async operation.  
-As a said early, the MDC scope is the thread, but the last line happens in another thread. Thus, we have a tricky improvement to work with.
+Note also the last log line. It has no CID because it is executed in an async operation. As I said earlier, the MDC scope is the thread, but the last line happens in another thread. Thus, we have a tricky improvement to work with.
 
 *[Mapped Diagnostic Context](http://logback.qos.ch/manual/mdc.html)
 
 ---
 
-That's it for now. Se you later!
+That's it for now. See you later!
