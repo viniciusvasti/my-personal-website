@@ -6,6 +6,9 @@ import TagLabel from "../../../../components/tag-label";
 import Date from "../../../../components/date";
 import { getAllPostIds } from "../../../../lib/posts";
 import Header from "../../../../components/header";
+import React from "react";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 const postsDirectory = path.join(process.cwd(), "posts");
 
@@ -22,6 +25,32 @@ export function generateStaticParams() {
     return postsIds.map((id) => ({
         slug: id,
     }));
+}
+
+function Code({ className, children }) {
+    const language = className?.replace("lang-", "");
+    return language ? (
+        <SyntaxHighlighter
+            language={language}
+            style={{
+                ...a11yDark,
+                hljs: {
+                    display: "block",
+                    overflowX: "auto",
+                    background: "transparent",
+                    color: "#f8f8f2",
+                    padding: "0em",
+                    margin: "0",
+                },
+            }}
+        >
+            {children}
+        </SyntaxHighlighter>
+    ) : (
+        <span className="font-mono bg-slate-300 text-cyan-700 px-1 py-0.5 rounded-md prose-code:m-1">
+            {children}
+        </span>
+    );
 }
 
 export default function PostPage(props) {
@@ -42,8 +71,17 @@ export default function PostPage(props) {
                 <div className="text-sm font-light text-gray-400">
                     <Date dateString={data.date} />
                 </div>
-                <article className="prose lg:prose-xl">
-                    <Markdown>{content}</Markdown>
+                <article className="prose prose-indigo max-w-none sm:prose-lg lg:prose-lg">
+                    <Markdown
+                        options={{
+                            enforceAtxHeadings: true,
+                            overrides: {
+                                code: Code,
+                            },
+                        }}
+                    >
+                        {content}
+                    </Markdown>
                 </article>
             </section>
         </div>

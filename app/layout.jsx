@@ -41,7 +41,10 @@ export default function RootLayout({ children }) {
                     <main>{children}</main>
                     {!home && (
                         <div className="mt-12">
-                            <Link href="/" className="text-blue-400 hover:underline">
+                            <Link
+                                href="/"
+                                className="text-blue-400 hover:underline"
+                            >
                                 ← Back to home
                             </Link>
                         </div>
