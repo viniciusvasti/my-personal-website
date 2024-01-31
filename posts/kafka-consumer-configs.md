@@ -5,6 +5,7 @@ tags: 'apache kafka'
 ---
 
 ---
+
 Hi, everyone!
 In this post I'm going to discuss main configurations for a Kafka Consumer
 
@@ -90,5 +91,5 @@ The delay between retries for failed message reading actions.
 ---
 
 ### Related Posts
-- <a href="../posts/kafka-producer-configs">Apache Kafka Producer main configs for Resilience, Performance and Consistency</a>  
-- <a href="../posts/kafka-topic-configs">Apache Kafka Topic main configs for Resilience, Performance and Consistency</a>
+- <a className="text-slate-700 hover:text-blue-400" href="../posts/kafka-producer-configs">Apache Kafka Producer main configs for Resilience, Performance and Consistency</a>  
+- <a className="text-slate-700 hover:text-blue-400" href="../posts/kafka-topic-configs">Apache Kafka Topic main configs for Resilience, Performance and Consistency</a>

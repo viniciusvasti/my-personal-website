@@ -5,9 +5,10 @@ tags: 'architecture,microservices,event-driven,message-driven,apache kafka,c4mod
 ---
 
 ---
+
 Hi, everyone!
 This is the part 3 of Awesome Backend series.
-More info at <a href="../posts/awesome-backend">Awesome Backend - High Available, robust, modern, backend architecture hands on</a>  
+More info at <a className="text-slate-700 hover:text-blue-400" href="../posts/awesome-backend">Awesome Backend - High Available, robust, modern, backend architecture hands on</a>  
 For this part, I'm going to design the events/messages flow through the microservices when an Order is request by a customer.  
 I want my microservices to be decoupled one from another, so as discussed on part 2, Apache Kafka will be the message broker acting as a backbone of events for this architecture.  
 Apache Kafka allow us to have more the one event listener with the guarantee that the event are 
@@ -34,7 +35,7 @@ This is the Dynamic diagram, one of the C4 supplementary diagrams. Since the cor
 <a target="_blank" rel="noopener noreferrer" href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/Awesome Online Store/Dynamic/events-backbone-for-ordering.svg">
     <figure>
         <img src="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/Awesome Online Store/Dynamic/events-backbone-for-ordering.svg" />
-    <figcaption><a href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/Awesome Online Store/Dynamic/events-backbone-for-ordering.puml">checkout-flow-chart.puml on github</a></figcaption>
+    <figcaption><a className="text-slate-700 hover:text-blue-400" href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/Awesome Online Store/Dynamic/events-backbone-for-ordering.puml">checkout-flow-chart.puml on github</a></figcaption>
     </figure>
 </a>
 
@@ -64,7 +65,8 @@ Orders Microservice don't care about who is going to process payment, it only ne
 I can easily replace Payments Microservice for a Serverless function, use a legacy System or anything else without side effects to Orders Microservice. This is the beauty here.
 
 ---
+
 That's it for now.  
 See you soon on next posts.
 
-See all posts series at <a href="../posts/awesome-backend">Awesome Backend - High Available, robust, modern, backend architecture hands on</a>  
+See all posts series at <a className="text-slate-700 hover:text-blue-400" href="../posts/awesome-backend">Awesome Backend - High Available, robust, modern, backend architecture hands on</a>  

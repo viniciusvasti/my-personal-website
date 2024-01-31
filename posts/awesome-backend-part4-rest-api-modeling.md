@@ -5,9 +5,10 @@ tags: 'architecture,microservices,rest api'
 ---
 
 ---
+
 Hi, everyone!
 This is the part 4 of Awesome Backend series.
-More info at <a href="../posts/awesome-backend">Awesome Backend - High Available, robust, modern, backend architecture hands on</a>  
+More info at <a className="text-slate-700 hover:text-blue-400" href="../posts/awesome-backend">Awesome Backend - High Available, robust, modern, backend architecture hands on</a>  
 For this part, I'm going to design the REST API requesting an Order for Awesome Online Store.  
 For now, it isn't going to be RESTFull, I will keep it simple.
 
@@ -157,7 +158,8 @@ Listing available products:
 
 
 ---
+
 That's it for now.  
 See you soon on next posts.
 
-See all posts series at <a href="../posts/awesome-backend">Awesome Backend - High Available, robust, modern, backend architecture hands on</a>  
+See all posts series at <a className="text-slate-700 hover:text-blue-400" href="../posts/awesome-backend">Awesome Backend - High Available, robust, modern, backend architecture hands on</a>  

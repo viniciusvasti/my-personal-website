@@ -5,6 +5,7 @@ tags: 'apache kafka'
 ---
 
 ---
+
 Hi, everyone!
 In this post I'm going to discuss main configurations for a Kafka Topic
 
@@ -42,5 +43,5 @@ As soon as this value is achieved, older messages begin to be deleted.
 ---
 
 ### Related Posts
-- <a href="../posts/kafka-producer-configs">Apache Kafka Producer main configs for Resilience, Performance and Consistency</a>  
-- <a href="../posts/kafka-consumer-configs">Apache Kafka Consumer main configs for Resilience, Performance and Consistency</a>  
+- <a className="text-slate-700 hover:text-blue-400" href="../posts/kafka-producer-configs">Apache Kafka Producer main configs for Resilience, Performance and Consistency</a>  
+- <a className="text-slate-700 hover:text-blue-400" href="../posts/kafka-consumer-configs">Apache Kafka Consumer main configs for Resilience, Performance and Consistency</a>  

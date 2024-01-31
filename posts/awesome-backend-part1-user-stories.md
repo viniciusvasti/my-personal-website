@@ -5,9 +5,10 @@ tags: 'BDD,architecture,c4model'
 ---
 
 ---
+
 Hi, everyone!
 This is the part 1 of Awesome Backend series.
-More info at <a href="../posts/awesome-backend">Awesome Backend - High Available, robust, modern, backend architecture hands on</a>  
+More info at <a className="text-slate-700 hover:text-blue-400" href="../posts/awesome-backend">Awesome Backend - High Available, robust, modern, backend architecture hands on</a>  
 For this part, I'm going to write business use cases and present de first level of C4 Model
 
 So, hands on!
@@ -27,7 +28,7 @@ So let's think about the flow and possible scenarios the application should cove
 <a target="_blank" rel="noopener noreferrer" href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/happy-checkout-flow-chart.svg">
     <figure>
         <img src="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/happy-checkout-flow-chart.svg" />
-    <figcaption><a href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/happy-checkout-flow-chart.puml">happy-checkout-flow-chart.puml on github</a></figcaption>
+    <figcaption><a className="text-slate-700 hover:text-blue-400" href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/happy-checkout-flow-chart.puml">happy-checkout-flow-chart.puml on github</a></figcaption>
     </figure>
 </a>
 
@@ -41,7 +42,7 @@ Including these details to the flow, this is the result:
 <a target="_blank" rel="noopener noreferrer" href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/checkout-flow-chart.svg">
     <figure>
         <img src="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/checkout-flow-chart.svg" />
-      <figcaption><a href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/checkout-flow-chart.puml">checkout-flow-chart.puml on github</a></figcaption>
+      <figcaption><a className="text-slate-700 hover:text-blue-400" href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/checkout-flow-chart.puml">checkout-flow-chart.puml on github</a></figcaption>
     </figure>
 </a>
 
@@ -80,12 +81,13 @@ It is useful for anyone, in a technical role or not, to have a view of how and w
 <a target="_blank" rel="noopener noreferrer" href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/context.svg">
  <figure>
     <img src="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/context.svg" />
-  <figcaption><a href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/context.puml">context.puml on github</a></figcaption>
+  <figcaption><a className="text-slate-700 hover:text-blue-400" href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/context.puml">context.puml on github</a></figcaption>
 </figure>
 </a>
 
 ---
+
 That's it for now.  
 See you soon on next posts.
 
-See all posts series at <a href="../posts/awesome-backend">Awesome Backend - High Available, robust, modern, backend architecture hands on</a>  
+See all posts series at <a className="text-slate-700 hover:text-blue-400" href="../posts/awesome-backend">Awesome Backend - High Available, robust, modern, backend architecture hands on</a>  

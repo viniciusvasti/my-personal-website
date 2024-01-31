@@ -5,6 +5,7 @@ tags: 'java,spring boot,logging'
 ---
 
 ---
+
 Hi, everyone!
 if you have already had any experience with production software, you know the importance of logging for an app.  
 For web applications, we usually have multi threaded instances, receiving several requests.  
@@ -15,12 +16,13 @@ Let me show how to do that in a Spring Boot App.
 ---
 
 ## About the tech stack
-- [Spring Boot]: most popular Java framework for building backend web applications;
+- Spring Boot: most popular Java framework for building backend web applications;
 
 ---
 
 ### The problem
 Let me show a simple example of some lines of log for a request:
+
 ```bash
 2021-02-23 13:52:11.386  INFO 39105 --- OrderCommandController       : Receiving HTTP POST with body CreateOrderDTO[customerName=string, products=[ProductDTO[sku=0, name=string, price=0.0]], payment=PaymentDTO[paymentMethod=CREDIT]]
 2021-02-23 13:52:11.390  INFO 39105 --- OrderRequestServiceImpl  : Creating order: CreateOrderDTO[customerName=string, products=[ProductDTO[sku=0, name=string, price=0.0]], payment=PaymentDTO[paymentMethod=CREDIT]]
@@ -34,6 +36,7 @@ instances, receiving hundreds of requests for second, it would be very difficult
 
 ### The solution
 First thing is to intercept every request and set a CID (Correlation ID) if it's not provided by the client as an HTTP request header:
+
 ```java
 @Component
 public class RequestLoggingFilter implements Filter {
@@ -70,6 +73,7 @@ Then I put the CID on MDC*, let the request go forward and finally, clear the CI
 
 ### The result
 Executing the same action, note the new log field `CID=48eaba9a-dca9-44da-93e2-f95d93652846`:
+
 ```bash
 2021-02-23 15:20:12.308  INFO CID=48eaba9a-dca9-44da-93e2-f95d93652846 47388 --- OrderCommandController       : Receiving HTTP POST with body CreateOrderDTO[customerName=string, products=[ProductDTO[sku=0, name=string, price=0.0]], payment=PaymentDTO[paymentMethod=CREDIT]]
 2021-02-23 15:20:12.312  INFO CID=48eaba9a-dca9-44da-93e2-f95d93652846 47388 --- OrderRequestServiceImpl  : Creating order: CreateOrderDTO[customerName=string, products=[ProductDTO[sku=0, name=string, price=0.0]], payment=PaymentDTO[paymentMethod=CREDIT]]
@@ -86,4 +90,5 @@ As a said early, the MDC scope is the thread, but the last line happens in anoth
 *[Mapped Diagnostic Context](http://logback.qos.ch/manual/mdc.html)
 
 ---
+
 That's it for now. Se you later!

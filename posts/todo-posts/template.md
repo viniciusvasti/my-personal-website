@@ -5,6 +5,7 @@ tags: 'javascript,nodejs,serverless,terraform,lambda,aws,aws api gateway,rest ap
 ---
 
 ---
+
 Hi, everyone!
 Post Summary
 
@@ -26,7 +27,7 @@ So, hands on!
 
 
 ### Related Posts
-- <a href="../posts/hands-on-aws-agw-terraform-sls-framework-part-2">AWS API Gateway + Terraform 
+- <a className="text-slate-700 hover:text-blue-400" href="../posts/hands-on-aws-agw-terraform-sls-framework-part-2">AWS API Gateway + Terraform 
 + Serverless Framework - Part 2</a>  
-- <a href="../posts/hands-on-aws-agw-terraform-sls-framework-part-3">AWS API Gateway + Terraform 
+- <a className="text-slate-700 hover:text-blue-400" href="../posts/hands-on-aws-agw-terraform-sls-framework-part-3">AWS API Gateway + Terraform 
 + Serverless Framework - Part 3</a>

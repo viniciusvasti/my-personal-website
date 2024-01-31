@@ -5,6 +5,7 @@ tags: 'apache kafka'
 ---
 
 ---
+
 Hi, everyone!
 In this post I'm going to discuss main configurations for a Kafka Producer
 
@@ -68,5 +69,5 @@ This is very useful in scenarios of unavailability, since it could be more effec
 ---
 
 ### Related Posts
-- <a href="../posts/kafka-consumer-configs">Apache Kafka Consumer main configs for Resilience, Performance and Consistency</a>  
-- <a href="../posts/kafka-topic-configs">Apache Kafka Topic main configs for Resilience, Performance and Consistency</a>
+- <a className="text-slate-700 hover:text-blue-400" href="../posts/kafka-consumer-configs">Apache Kafka Consumer main configs for Resilience, Performance and Consistency</a>  
+- <a className="text-slate-700 hover:text-blue-400" href="../posts/kafka-topic-configs">Apache Kafka Topic main configs for Resilience, Performance and Consistency</a>

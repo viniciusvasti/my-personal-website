@@ -5,9 +5,10 @@ tags: 'architecture,microservices,apigateway,event-driven,message-driven,apache 
 ---
 
 ---
+
 Hi, everyone!
 This is the part 2 of Awesome Backend series.
-More info at <a href="../posts/awesome-backend">Awesome Backend - High Available, robust, modern, backend architecture hands on</a>  
+More info at <a className="text-slate-700 hover:text-blue-400" href="../posts/awesome-backend">Awesome Backend - High Available, robust, modern, backend architecture hands on</a>  
 For this part, I'm going to model the System, identifying business domain contexts for a decoupled backend as a microservice architecture.  
 I'm going to draw it as a C4 Model Container Diagram as well.
 
@@ -26,7 +27,7 @@ The functional flowchart of the app discussed on part 1 ended up like this:
 <a target="_blank" rel="noopener noreferrer" href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/checkout-flow-chart.svg">
      <figure>
         <img src="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/checkout-flow-chart.svg" />
-      <figcaption><a href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/checkout-flow-chart.puml">checkout-flow-chart.puml on github</a></figcaption>
+      <figcaption><a className="text-slate-700 hover:text-blue-400" href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/flowcharts/checkout-flow-chart.puml">checkout-flow-chart.puml on github</a></figcaption>
     </figure>
 </a>
 
@@ -53,7 +54,7 @@ Putting it all together, this is the Containers Diagram presenting the "blocks" 
 <a target="_blank" rel="noopener noreferrer" href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/Awesome%20Online%20Store/conteiners.svg">
      <figure>
         <img src="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/Awesome%20Online%20Store/conteiners.svg" />
-      <figcaption><a href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/Awesome%20Online%20Store/conteiners.puml">context.puml on github</a></figcaption>
+      <figcaption><a className="text-slate-700 hover:text-blue-400" href="https://raw.githubusercontent.com/viniciusvasti/awesome-backend/master/awesome-backend-docs/src/Awesome%20Online%20Store/conteiners.puml">context.puml on github</a></figcaption>
     </figure>
 </a>
 
@@ -88,7 +89,8 @@ It's worth to mention that the difference between event and message in this cont
 event will be notified, but I don't care about whom. E.g. if everything is ok with the customer's order, Orders Microservice triggers an async event of type: "New order approved with \<data\>". Shipment Microservice listen to this event and starts shipping process. Also, Notifications Microservice listens to this event and sends an email to the customer. Stocks Microservice is another one subscribed to this event.
 
 ---
+
 That's it for now.  
 See you soon on next posts.
 
-See all posts series at <a href="../posts/awesome-backend">Awesome Backend - High Available, robust, modern, backend architecture hands on</a>  
+See all posts series at <a className="text-slate-700 hover:text-blue-400" href="../posts/awesome-backend">Awesome Backend - High Available, robust, modern, backend architecture hands on</a>  

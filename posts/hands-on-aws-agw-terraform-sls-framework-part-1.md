@@ -5,18 +5,19 @@ tags: 'terraform,aws,aws api gateway,rest api'
 ---
 
 ---
+
 Hi, everyone!
 For this "Hands on!" we're going to build a REST API with **AWS API Gateway**, provisioned with **Terraform** and backed by **AWS Lambda** built with **Serverless Framework**.  
 The REST API will allow us to send SMS Messages using **AWS SNS**. Sounds like a lot of things, 
 but it's not that lot of working.  
 For this part 1, we'll provision our API Gateway with Terraform and for part 2 and 3:
 
-<a href="../posts/hands-on-aws-agw-terraform-sls-framework-part-2">Part 2: coding the backend with Serverless Framework</a>  
-<a href="../posts/hands-on-aws-agw-terraform-sls-framework-part-3">Part 3: securing the API with Amazon Cognito</a>
+<a className="text-slate-700 hover:text-blue-400" href="../posts/hands-on-aws-agw-terraform-sls-framework-part-2">Part 2: coding the backend with Serverless Framework</a>  
+<a className="text-slate-700 hover:text-blue-400" href="../posts/hands-on-aws-agw-terraform-sls-framework-part-3">Part 3: securing the API with Amazon Cognito</a>
 
 ---
 
-## About the tech stack
+## Tech Stack
 - [AWS](https://aws.amazon.com/): Most popular Cloud provider. You need an account to follow this article properly;
 - [AWS API Gateway](https://aws.amazon.com/api-gateway/): AWS managed API Gateway that will expose our rest endpoints;
 - [AWS Lambda](https://aws.amazon.com/lambda/): serverless functions on AWS working as our backend;
@@ -44,7 +45,8 @@ When provisioning resources, the docs helps a lot: https://www.terraform.io/docs
 Nobody should try to memorize the code for a bunch of services AWS provides.
 
 First, we need set the cloud provider configurations.  
-Let's create file `provider.tf` like this:
+Let's create the `provider.tf` file like this:
+
 ```java
 # provider.tf
 provider “aws” {
@@ -59,11 +61,13 @@ We are telling terraform that our provider is AWS, and we want provision resourc
 We're also setting aws credentials having the roles and policies needed to manage API Gateway (we could set the credentials as environment variables as well).
 I's important set the version of terraform aws plugin to avoid upgrades with breaking changes issues.
 Now, we can start terraform in this project running in terminal:  
+
 ```sh
 $ terraform init
 ```  
 You should se the message `Terraform has been successfully initialized!`.  
 To finally provision an API Gateway, let's create another `.tf` file as follows:
+
 ```java
 # api-gateway.tf
 resource "aws_api_gateway_rest_api" "my_api_gateway" {
@@ -81,11 +85,13 @@ resource "aws_api_gateway_rest_api" "my_api_gateway" {
 The content inside the block refers to attributes of the API Gateway. You can look at AWS API Gateway if you are not familiar.
 
 We can now execute the command below to check what Terraform is going to do after we apply the 
-provisioning plan:  
+provisioning plan:
+
 ```sh
 $ terraform plan
 ```  
 Among other output messages, you should see:
+
 ```java
 Terraform will perform the following actions:
   # aws_api_gateway_rest_api.my_api_gateway will be created
@@ -110,6 +116,7 @@ Plan: 1 to add, 0 to change, 0 to destroy.
 As we can see on the last line, Terraform going to add 1 resource, change none and destroy none.  
 It's not guaranteed that this plan will be exactly the same applied. So we could use `$ terraform plan -out`, but this plan is pretty simple.  
 To really apply the changes, the command is:
+
 ```sh
 $ terraform apply
 ```  
@@ -124,6 +131,7 @@ However, clicking on it, there's no api resources paths:
 
 Let's define that our API base path going to be `<api-url>/my-api/v1`.
 Back to Terraform files, we add this code:
+
 ```java
 # api-gateway.tf
 resource "aws_api_gateway_rest_api" "my_api_gateway" {
@@ -150,6 +158,7 @@ resource "aws_api_gateway_resource" "v1" {
 
 Note that for "v1" resource, the parent_id is the id of "my_api" resource, thus the complete path going to be "/my-api/v1".  
 Running apply again:
+
 ```sh
 $ terraform apply
 ```  
@@ -165,5 +174,5 @@ We should see on AWS Console three API resources ("/", "my-api" and "v1"):
 That's it for this post. In part 2 we're going to implement backend with Serverless and part 3 we'll implement authentication with Amazon Cognito:
 
 ### Related Posts
-- <a href="../posts/hands-on-aws-agw-terraform-sls-framework-part-2">AWS API Gateway + Terraform + Serverless Framework - Part 2</a>  
-- <a href="../posts/hands-on-aws-agw-terraform-sls-framework-part-3">AWS API Gateway + Terraform + Serverless Framework - Part 3</a>
+- <a className="text-slate-700 hover:text-blue-400" href="../posts/hands-on-aws-agw-terraform-sls-framework-part-2">AWS API Gateway + Terraform + Serverless Framework - Part 2</a>  
+- <a className="text-slate-700 hover:text-blue-400" href="../posts/hands-on-aws-agw-terraform-sls-framework-part-3">AWS API Gateway + Terraform + Serverless Framework - Part 3</a>

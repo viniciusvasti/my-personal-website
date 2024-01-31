@@ -5,14 +5,15 @@ tags: 'javascript,nodejs,serverless,lambda,aws,aws api gateway,rest'
 ---
 
 ---
+
 Hi, everyone!
 For this "Hands on!" we're building a REST API with **AWS API Gateway**, provisioned with **Terraform** and backed by **AWS Lambda** built with **Serverless Framework**.  
 The REST API will allow us to send SMS Messages using **AWS SNS**. Sounds like a lot of things, 
 but it's not that lot of working.  
 For this part 2, we'll code the backend with Serverless Framework and for part 1 and 3:
 
-<a href="../posts/hands-on-aws-agw-terraform-sls-framework-part-1">Part 1: provisioning an AWS API Gateway with Terraform</a>  
-<a href="../posts/hands-on-aws-agw-terraform-sls-framework-part-3">Part 3: securing the API with Amazon Cognito</a>
+<a className="text-slate-700 hover:text-blue-400" href="../posts/hands-on-aws-agw-terraform-sls-framework-part-1">Part 1: provisioning an AWS API Gateway with Terraform</a>  
+<a className="text-slate-700 hover:text-blue-400" href="../posts/hands-on-aws-agw-terraform-sls-framework-part-3">Part 3: securing the API with Amazon Cognito</a>
 
 ---
 
@@ -37,6 +38,7 @@ Hands on!
 
 ### Setting project
 For create a project from a template for AWS + NodeJS, run on terminal:
+
 ```sh
 $ sls create --template aws-nodejs
 ```  
@@ -88,6 +90,7 @@ service, respectively.
 ![](../images/posts/hands-on-aws-agw-terraform-sls-framework-part-2/aws_api_gateway_id.png)
 
 Now let's deploy this to AWS running:
+
 ```sh
 $ sls deploy
 ```
@@ -98,10 +101,12 @@ We can test it with Postman ou directly on Console:
 
 Once it's working, let's code the handler to send the SMS using Amazon SNS.  
 To do that, we need to start the NPM Package Manager and install the AWS SDK:
+
 ```sh
 $ npm init && npm i aws-sdk --save
 ```
-The `handler.js` file should be like this:  
+The `handler.js` file should be like this:
+
 ```javascript
 const AWS = require("aws-sdk");
 
@@ -131,7 +136,8 @@ module.exports.hello = async (event) => {
 };
 ```
 
-The last thing is to allow the Lambda to access Amazon SNS changing `serverless.yml`:  
+The last thing is to allow the Lambda to access Amazon SNS changing `serverless.yml`:
+
 ```yml
 # serverless.yml
 ...
@@ -147,6 +153,7 @@ provider:
 ```
 
 Testing the api again, this time passing the JSON below, an SMS should be sent to the phone number.
+
 ```json
 {
     "phoneNumber": "11912345678",
@@ -162,5 +169,5 @@ Testing the api again, this time passing the JSON below, an SMS should be sent t
 That's it for this post. In part 3 we're implement authentication with Amazon Cognito:
 
 ### Related Posts
-- <a href="../posts/hands-on-aws-agw-terraform-sls-framework-part-1">AWS API Gateway + Terraform + Serverless Framework - Part 1</a>
-- <a href="../posts/hands-on-aws-agw-terraform-sls-framework-part-3">AWS API Gateway + Terraform + Serverless Framework - Part 3</a>
+- <a className="text-slate-700 hover:text-blue-400" href="../posts/hands-on-aws-agw-terraform-sls-framework-part-1">AWS API Gateway + Terraform + Serverless Framework - Part 1</a>
+- <a className="text-slate-700 hover:text-blue-400" href="../posts/hands-on-aws-agw-terraform-sls-framework-part-3">AWS API Gateway + Terraform + Serverless Framework - Part 3</a>
