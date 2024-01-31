@@ -15,7 +15,7 @@ const SkillsLabel = ({ type, children }) => {
 export default function Post() {
     return (
         <div>
-            <Header home={true} />
+            <Header />
             <section className="text-lg">
                 Hey, welcome! I&apos;m <b>Vinicius</b>. I&apos;m a{" "}
                 <b>Full Stack Software Engineer</b> with a strong Backend

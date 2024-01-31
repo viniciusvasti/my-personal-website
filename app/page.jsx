@@ -10,18 +10,20 @@ const PostList = ({ className, children }) => {
 
 const PostListItem = ({ id, title, date, tags }) => {
     return (
-        <div className="flex flex-col gap-0.5 w-full border border-slate-200 rounded-md bg-white shadow-md p-4">
-            <Link href={`/posts/${id}`}>
-                <h2 className="text-lg font-bold text-slate-500 hover:underline">
-                    {title}
-                </h2>
-            </Link>
-            <div className="space-x-1.5">
-                {tags.split(",").map((tag) => (
-                    <TagLabel key={tag}>{tag}</TagLabel>
-                ))}
-            </div>
-            <small className="text-sm font-light text-slate-400">
+        <div className="flex flex-col justify-between gap-2 w-full border border-slate-200 rounded-md bg-white shadow-md p-4">
+            <span>
+                <Link href={`/posts/${id}`}>
+                    <h2 className="text-lg font-bold text-slate-500 hover:underline">
+                        {title}
+                    </h2>
+                </Link>
+                <div className="space-x-1.5">
+                    {tags.split(",").map((tag) => (
+                        <TagLabel key={tag}>{tag}</TagLabel>
+                    ))}
+                </div>
+            </span>
+            <small className="text-xs font-light text-slate-400">
                 <Date dateString={date} />
             </small>
         </div>

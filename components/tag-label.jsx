@@ -1,10 +1,6 @@
-const TagLabel = ({
-    backgroundColor = "black",
-    textColor = "white",
-    children,
-}) => {
+const TagLabel = ({ children }) => {
     return (
-        <div className="text-xs font-bold uppercase tracking-wide inline-flex items-center justify-center px-2 py-1 rounded-full  leading-none bg-slate-500 text-slate-100">
+        <div className="text-xs font-medium font-mono uppercase tracking-wide inline-flex items-center justify-center px-2 py-1 rounded-md  leading-none bg-slate-100 text-slate-500">
             {children}
         </div>
     );
