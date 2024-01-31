@@ -17,10 +17,10 @@ export default function Post() {
         <div>
             <Header home={true} />
             <section className="text-lg">
-                Hey, welcome! I'm <b>Vinicius</b>. I'm a{" "}
+                Hey, welcome! I&apos;m <b>Vinicius</b>. I&apos;m a{" "}
                 <b>Full Stack Software Engineer</b> with a strong Backend
                 background and over 12 years of experience. During the last 6
-                years of my career, I've been building scalable web Apps and
+                years of my career, I&apos;ve been building scalable web Apps and
                 Services, running on the cloud and React.JS web apps. The
                 majority of the Web Services I built were well-architected REST
                 APIs, applying concepts like horizontal scalability, caching,
