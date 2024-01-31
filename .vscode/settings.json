@@ -1,5 +1,12 @@
 {
     "cSpell.enableFiletypes": [
         "markdown"
+    ],
+    "grammarly.selectors": [
+        {
+            "language": "markdown",
+            "scheme": "file",
+            "pattern": "posts/when-to-change-api-version.md"
+        }
     ]
 }

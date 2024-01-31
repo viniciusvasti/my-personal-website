@@ -47,7 +47,7 @@ const Header = ({ home }) => {
                 </>
             )}
             <Link
-                href="/aboutme"
+                href="/about-me"
                 className="text-slate-300 hover:underline hover:text-blue-400"
             >
                 About Me

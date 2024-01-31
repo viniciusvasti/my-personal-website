@@ -71,7 +71,7 @@ export default function PostPage(props) {
                 <div className="text-sm font-light text-gray-400">
                     <Date dateString={data.date} />
                 </div>
-                <article className="prose prose-indigo max-w-none sm:prose-lg lg:prose-lg">
+                <article className="prose prose-indigo max-w-none sm:prose-lg lg:prose-lg prose-pre:rounded-xl">
                     <Markdown
                         options={{
                             enforceAtxHeadings: true,
