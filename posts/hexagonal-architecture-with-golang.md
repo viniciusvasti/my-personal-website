@@ -1,11 +1,7 @@
 ---
 title: Hexagonal Architecture with Golang
-date: 
-tags:
-  - architecture
-  - rest
-  - api
-  - golang
+date: '2024-01-30'
+tags: architecture,rest api,golang
 ---
 
 ...Content
