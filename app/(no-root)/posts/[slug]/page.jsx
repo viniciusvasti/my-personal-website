@@ -26,28 +26,26 @@ export function generateStaticParams() {
 
 export default function PostPage(props) {
     const slug = props.params.slug;
-    const postData = getPostData(slug);
+    const { data, content } = getPostData(slug);
     return (
         <div>
             <Header />
-            <article>
-                <h1 className="text-3xl font-extrabold mb-1">
-                    {postData.data.title}
+            <section>
+                <h1 className="text-3xl font-bold text-slate-800 mb-1">
+                    {data.title}
                 </h1>
-                <div className="text-gray-400">
-                    <Date dateString={postData.data.date} />
+                <div className="space-x-1.5 mb-2">
+                    {data.tags.split(",").map((tag) => (
+                        <TagLabel key={tag}>{tag}</TagLabel>
+                    ))}
                 </div>
-                {postData.data.tags.split(",").map((tag) => (
-                    <span key={tag}>
-                        <TagLabel backgroundColor="#AAA" textColor="#EEE">
-                            {tag}
-                        </TagLabel>{" "}
-                    </span>
-                ))}
+                <div className="text-sm font-light text-gray-400">
+                    <Date dateString={data.date} />
+                </div>
                 <article className="prose lg:prose-xl">
-                    <Markdown>{postData.content}</Markdown>
+                    <Markdown>{content}</Markdown>
                 </article>
-            </article>
+            </section>
         </div>
     );
 }
