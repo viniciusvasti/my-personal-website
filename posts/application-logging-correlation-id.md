@@ -1,7 +1,7 @@
 ---
 title: 'Application logging with Correlation ID'
 date: '2021-02-23'
-tags: 'java,spring boot,logging'
+tags: [java, spring boot, logging]
 ---
 
 ---

@@ -64,7 +64,7 @@ export default function PostPage(props) {
                     {data.title}
                 </h1>
                 <div className="space-x-1.5 mb-2">
-                    {data.tags.split(",").map((tag) => (
+                    {data.tags.map((tag) => (
                         <TagLabel key={tag}>{tag}</TagLabel>
                     ))}
                 </div>

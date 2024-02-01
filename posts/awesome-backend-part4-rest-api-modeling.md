@@ -1,7 +1,7 @@
 ---
 title: 'Awesome Backend - Part 4 - Modeling the REST API'
 date: '2021-02-18'
-tags: 'architecture,microservices,rest api'
+tags: [architecture,microservices,rest api]
 ---
 
 ---

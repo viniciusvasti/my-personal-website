@@ -18,7 +18,7 @@ const PostListItem = ({ id, title, date, tags }) => {
                     </h2>
                 </Link>
                 <div className="space-x-1.5">
-                    {tags.split(",").map((tag) => (
+                    {tags.map((tag) => (
                         <TagLabel key={tag}>{tag}</TagLabel>
                     ))}
                 </div>

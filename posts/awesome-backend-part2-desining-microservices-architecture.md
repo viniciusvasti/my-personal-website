@@ -1,7 +1,7 @@
 ---
 title: 'Awesome Backend - Part 2 - Designing Microservices Architecture and C4 Level 2 Diagram'
 date: '2021-02-15'
-tags: 'architecture,microservices,apigateway,event-driven,message-driven,apache kafka,c4model,ddd'
+tags: [architecture,microservices,apigateway,event-driven,message-driven,apache kafka,c4model,ddd]
 ---
 
 ---

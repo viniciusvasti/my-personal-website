@@ -1,7 +1,7 @@
 ---
 title: 'Awesome Backend - High Available, robust, modern, backend architecture hands on'
 date: '2021-02-13'
-tags: 'architecture,java,spring boot,apache kafka, microservices,docker,kubernetes,javascript,nodejs,rest api'
+tags: [architecture,java,spring boot,apache kafka, microservices,docker,kubernetes,javascript,nodejs,rest api]
 ---
 
 ---

@@ -1,7 +1,7 @@
 ---
 title: 'Awesome Backend - Part 1 - User Stories and C4 Level 1 Diagram'
 date: '2021-02-14'
-tags: 'BDD,architecture,c4model'
+tags: [BDD,architecture,c4model]
 ---
 
 ---

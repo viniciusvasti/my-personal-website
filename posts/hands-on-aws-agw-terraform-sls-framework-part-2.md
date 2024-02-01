@@ -1,7 +1,7 @@
 ---
 title: 'AWS API Gateway + Terraform + Serverless Framework - Part 2'
 date: '2021-02-02'
-tags: 'javascript,nodejs,serverless,lambda,aws,aws api gateway,rest'
+tags: [javascript,nodejs,serverless,lambda,aws,aws api gateway,rest]
 ---
 
 ---

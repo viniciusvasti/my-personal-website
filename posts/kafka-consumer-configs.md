@@ -1,7 +1,7 @@
 ---
 title: 'Apache Kafka Consumer main configs for Resilience, Performance and Consistency'
 date: '2021-03-24'
-tags: 'apache kafka'
+tags: [apache kafka]
 ---
 
 ---

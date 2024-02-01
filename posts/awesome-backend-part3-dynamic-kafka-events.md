@@ -1,7 +1,7 @@
 ---
 title: 'Awesome Backend - Part 3 - Dynamic between microservices and Kafka as a backbone of events'
 date: '2021-02-17'
-tags: 'architecture,microservices,event-driven,message-driven,apache kafka,c4model'
+tags: [architecture,microservices,event-driven,message-driven,apache kafka,c4model]
 ---
 
 ---

@@ -1,7 +1,10 @@
 ---
-title: 'Hexagonal Architecture with Golang'
+title: Hexagonal Architecture with Golang
 date: '2024-01-31'
-tags: 'architecture,api,golang'
+tags: 
+    - architecture
+    - api
+    - golang
 ---
 
 ---
@@ -10,7 +13,7 @@ tags: 'architecture,api,golang'
 This architectural approach brings several benefits to a complex application. It might be bit a over for very simple ones, but anyways, who knows how much will our application grow?
 
 The Ports and Adapter represent interfaces to connect external resources to our interface in a decoupled manner.
-![Ports & Adapters](../images/posts/Ports and Adapters.png)
+![Ports & Adapters](../images/posts/Ports-and-Adapters.png)
 
 The idea is to isolate the core of the application (the business layer) from external resources that are just technology tools.
 The business doesn't care which type of databases we're using or which framework we're using to implement an HTTP API.

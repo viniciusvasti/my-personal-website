@@ -1,7 +1,7 @@
 ---
 title: 'AWS API Gateway + Terraform + Serverless Framework - Part 1'
 date: '2021-02-01'
-tags: 'terraform,aws,aws api gateway,rest api'
+tags: [terraform,aws,aws api gateway,rest api]
 ---
 
 ---

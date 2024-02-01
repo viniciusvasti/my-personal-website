@@ -1,7 +1,7 @@
 ---
 title: 'Awesome Backend - Part 5 - Microservices Project Architecture (DDD/Clean)'
 date: '2021-02-25'
-tags: 'architecture,clean,ddd,solid,oop'
+tags: [architecture,clean,ddd,solid,oop]
 ---
 
 ---

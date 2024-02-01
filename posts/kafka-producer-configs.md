@@ -1,7 +1,7 @@
 ---
 title: 'Apache Kafka Producer main configs for Resilience, Performance and Consistency'
 date: '2021-03-23'
-tags: 'apache kafka'
+tags: [apache kafka]
 ---
 
 ---

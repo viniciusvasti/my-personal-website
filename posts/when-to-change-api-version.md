@@ -1,7 +1,7 @@
 ---
 title: 'When to change a Rest API version'
 date: '2021-02-11'
-tags: 'rest api'
+tags: [rest api]
 ---
 
 ---
