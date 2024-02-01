@@ -159,6 +159,7 @@ func (w *Wedding) GetStatus() string {
 
 Nothing really special concerning the Hexagonal Architecture so far, but here we go.
 Let's implement our first `Port`, an interface for Wedding persistence:
+
 ```Go
 // application/ports/wedding_persistence.go
 package ports
@@ -173,6 +174,7 @@ type WeddingRepositoryInterface interface {
 ```
 
 The second `Port` is for components outside the application core to connect with the service:
+
 ```Go
 // application/ports/wedding_services_port.go
 package ports
@@ -192,7 +194,8 @@ type WeddingServiceInterface interface {
 }
 ```
 
-And the last thing to finalize the Application module, is the service implementation:
+And the last thing to finalize the Application module is the service implementation:
+
 ```Go
 // application/services/wedding_service.go
 package services
@@ -279,5 +282,143 @@ func (ws WeddingService) Disable(wedding application.WeddingInterface) error {
 	}
 	
 	return nil
+}
+```
+Although the Service implements a `Port`, it's not an `Adapter` because it's part of the core of the application, it implements business logic.
+Notice how it doesn't care about the concrete implementation of a database repository. It's decoupled from that.
+
+It's time for the adapters. Starting with the SQLite Repository Adapter:
+
+```Go
+// adapters/sqldb/wedding.go
+package sqldb
+
+import (
+	"database/sql"
+	"time"
+	"viniciusvasti/cerimonize/adapters/sqldb/util"
+	"viniciusvasti/cerimonize/application"
+)
+
+type WeddingSQLRepository struct {
+	db *sql.DB
+}
+
+func NewWeddingSQLRepository(db *sql.DB) *WeddingSQLRepository {
+	createTable(db)
+	return &WeddingSQLRepository{db: db}
+}
+
+func (p *WeddingSQLRepository) Get(id string) (application.WeddingInterface, error) {
+	var wedding application.Wedding
+
+	// Prepare statement for preventing SQL injection
+	statement, err := p.db.Prepare("SELECT id, name, date, budget, status FROM weddings WHERE id = ?")
+	if err != nil {
+		return nil, err
+	}
+	defer statement.Close()
+
+	dateString := ""
+	err = statement.QueryRow(id).Scan(&wedding.ID, &wedding.Name, &dateString, &wedding.Budget, &wedding.Status)
+	if err != nil {
+		return nil, err
+	}
+
+	wedding.Date, err = time.Parse("2006-01-02 15:04:05-07:00", dateString)
+	if err != nil {
+		return nil, err
+	}
+
+	return &wedding, nil
+}
+
+func (p *WeddingSQLRepository) GetAll() ([]application.WeddingInterface, error) {
+	var weddings []application.WeddingInterface = make([]application.WeddingInterface, 0)
+
+	// Prepare statement for preventing SQL injection
+	statement, err := p.db.Prepare("SELECT id, name, date, budget, status FROM weddings")
+	if err != nil {
+		return nil, err
+	}
+	defer statement.Close()
+
+	rows, err := statement.Query()
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		var wedding application.Wedding
+		dateString := ""
+		err = rows.Scan(&wedding.ID, &wedding.Name, &dateString, &wedding.Budget, &wedding.Status)
+		if err != nil {
+			return nil, err
+		}
+
+		wedding.Date, err = time.Parse("2006-01-02 15:04:05-07:00", dateString)
+		if err != nil {
+			return nil, err
+		}
+
+		weddings = append(weddings, &wedding)
+	}
+
+	return weddings, nil
+}
+
+func (p *WeddingSQLRepository) Save(wedding application.WeddingInterface) (application.WeddingInterface, error) {
+	var rows int
+	statement, err := p.db.Prepare("SELECT COUNT(*) FROM weddings WHERE id = ?")
+	statement.QueryRow(wedding.GetId()).Scan(&rows)
+	if err != nil {
+		return nil, err
+	}
+	defer statement.Close()
+
+	if rows == 0 {
+		_, err := p.create(wedding)
+		if err != nil {
+			return nil, err
+		}
+	} else {
+		_, err := p.update(wedding)
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	return wedding, nil
+}
+
+func (p *WeddingSQLRepository) create(wedding application.WeddingInterface) (application.WeddingInterface, error) {
+	statement, err := p.db.Prepare("INSERT INTO weddings (id, name, date, budget, status) VALUES (?, ?, ?, ?, ?)")
+	if err != nil {
+		return nil, err
+	}
+	defer statement.Close()
+
+	_, err = statement.Exec(wedding.GetId(), wedding.GetName(), wedding.GetDate(), wedding.GetBudget(), wedding.GetStatus())
+	if err != nil {
+		return nil, err
+	}
+
+	return wedding, nil
+}
+
+func (p *WeddingSQLRepository) update(wedding application.WeddingInterface) (application.WeddingInterface, error) {
+	statement, err := p.db.Prepare("UPDATE weddings SET name = ?, date = ?, budget = ?, status = ? WHERE id = ?")
+	if err != nil {
+		return nil, err
+	}
+	defer statement.Close()
+
+	_, err = statement.Exec(wedding.GetName(), wedding.GetDate(), wedding.GetBudget(), wedding.GetStatus(), wedding.GetId())
+	if err != nil {
+		return nil, err
+	}
+
+	return wedding, nil
 }
 ```
