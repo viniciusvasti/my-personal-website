@@ -1,10 +1,7 @@
 ---
 title: Hexagonal Architecture with Golang
 date: 2024-01-31
-tags:
-  - architecture
-  - api
-  - golang
+tags: architecture,api,golang
 ---
 ---
 
@@ -29,8 +26,11 @@ But if we decouple do application core from frameworks, we're safe.
 ### Supports replacement of application pieces
 As I mentioned before, it makes it easy and safe to replace databases, frameworks, external APIs, and so on.
 ### Allows the app to be equally driven by users, programs, automated tests, and scripts and to be developed and tested in isolation from its runtime devices and external resources
-
+If the application core is decoupled from any UI framework, you run automated tests that don't need to emulate users' UI interaction.
+Also, you can easily add a CLI interface for users to interact with your application if they want.
 ### Build a boundary around the application's core logic
+That's the mental model for implementing this architectural approach. Imagine a boundary protecting your application from concrete implementations of anything that is not part of the app's business logic.
+In practice, ask yourself if your code still compiles and if its tests run successfully if you delete every file that is not part of the application core. That is the concrete database repository implementations, HTTP controllers, queue listeners, etc.
 ### Decoupling the business logic from external resources
 ### Facilitates breaking a monolith into microservices
 ### This is supported by SOLID's Dependency Inversion Principle
