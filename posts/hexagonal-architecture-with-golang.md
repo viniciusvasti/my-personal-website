@@ -45,8 +45,239 @@ Our core module depends on abstractions that are implemented by the infra module
 
 ---
 
-...Content
+## Golang implementation
+That's our goal:
+![Ports & Adapters](../images/posts/ports-and-adapters-2.png)
 
----
+This post has no intention of covering how to initiate a Go project, so I'm skipping that part and going directly to the code.
+### Application Module
+Let's start with a `Wedding Interface` to define the properties and behavior of a Wedding and the actual implementation of a Wedding, its methods, and a convenient function to create a new Wedding:
 
-...Related posts
+```Go
+// application/wedding.go
+package application
+
+import (
+	"errors"
+	"time"
+	  
+	"github.com/google/uuid"
+)  
+
+const (
+	ENABLED = "enabled"
+	DISABLED = "disabled"
+)
+
+type WeddingInterface interface {
+	IsValid() (bool, error)
+	Enable() error
+	Disable()
+	GetId() string
+	GetName() string
+	GetDate() time.Time
+	GetStatus() string
+	GetBudget() float64
+}
+
+type Wedding struct {
+	ID string
+	Name string
+	Date time.Time
+	Budget float64
+	Status string
+}  
+
+func NewWedding(name string, date time.Time, budget float64) (*Wedding, error) {
+	wedding := Wedding{
+		ID: uuid.NewString(),
+		Name: name,
+		Date: date,
+		Status: ENABLED,
+		Budget: budget,
+	}
+	
+	if valid, err := wedding.IsValid(); !valid {
+		return nil, err
+	}
+	
+	return &wedding, nil
+}  
+
+func (w *Wedding) IsValid() (bool, error) {
+	if w.Name == "" {
+		return false, errors.New("The wedding name is required")
+	}
+	
+	if w.Date.IsZero() {
+		return false, errors.New("The wedding date is required")
+	}
+	
+	if w.Status != ENABLED && w.Status != DISABLED {
+		return false, errors.New("The wedding status is invalid")
+	}
+	
+	if w.Budget < 0 {
+		return false, errors.New("The wedding budget is invalid")
+	}
+	
+	return true, nil
+}
+
+func (w *Wedding) Enable() error {
+	if w.Date.Before(time.Now()) {
+		return errors.New("The wedding date must be a future date")
+	}
+	w.Status = ENABLED
+	return nil
+}
+
+func (w *Wedding) Disable() {
+	w.Status = DISABLED
+}
+
+func (w *Wedding) GetId() string {
+	return w.ID
+}
+
+func (w *Wedding) GetName() string {
+	return w.Name
+}
+
+func (w *Wedding) GetDate() time.Time {
+	return w.Date
+}
+
+func (w *Wedding) GetBudget() float64 {
+	return w.Budget
+}
+
+func (w *Wedding) GetStatus() string {
+	return w.Status
+}
+```
+
+Nothing really special concerning the Hexagonal Architecture so far, but here we go.
+Let's implement our first `Port`, an interface for Wedding persistence:
+```Go
+// application/ports/wedding_persistence.go
+package ports
+
+import "viniciusvasti/cerimonize/application"
+
+type WeddingRepositoryInterface interface {
+	Get(id string) (application.WeddingInterface, error)
+	GetAll() ([]application.WeddingInterface, error)
+	Save(wedding application.WeddingInterface) (application.WeddingInterface, error)
+}
+```
+
+The second `Port` is for components outside the application core to connect with the service:
+```Go
+// application/ports/wedding_services_port.go
+package ports
+
+import (
+	"time"
+	"viniciusvasti/cerimonize/application"
+)
+
+type WeddingServiceInterface interface {
+	Get(id string) (application.WeddingInterface, error)
+	GetAll() ([]application.WeddingInterface, error)
+	Create(name string, date time.Time, budget float64) (application.WeddingInterface, error)
+	Update(wedding application.WeddingInterface) (application.WeddingInterface, error)
+	Enable(wedding application.WeddingInterface) error
+	Disable(wedding application.WeddingInterface) error
+}
+```
+
+And the last thing to finalize the Application module, is the service implementation:
+```Go
+// application/services/wedding_service.go
+package services
+
+import (
+	"time"
+	"viniciusvasti/cerimonize/application"
+	"viniciusvasti/cerimonize/application/ports"
+)
+
+type WeddingService struct {
+	Repository ports.WeddingRepositoryInterface
+}
+
+func NewWeddingService(repository ports.WeddingRepositoryInterface) WeddingService {
+	return WeddingService{
+		Repository: repository,
+	}
+}
+
+func (ws WeddingService) Get(id string) (application.WeddingInterface, error) {
+	wedding, err := ws.Repository.Get(id)
+	if err != nil {
+		return nil, err
+	}
+	return wedding, nil
+}
+
+func (ws WeddingService) GetAll() ([]application.WeddingInterface, error) {
+	weddings, err := ws.Repository.GetAll()
+	if err != nil {
+		return nil, err
+	}
+	return weddings, nil
+}
+
+func (ws WeddingService) Create(name string, date time.Time, budget float64) (application.WeddingInterface, error) {
+	wedding, err := application.NewWedding(name, date, budget)
+	if err != nil {
+		return nil, err
+	}
+	
+	createdWedding, err := ws.Repository.Save(wedding)
+	if err != nil {
+		return nil, err
+	}
+	
+	return createdWedding, nil
+}
+
+func (ws WeddingService) Update(wedding application.WeddingInterface) (application.WeddingInterface, error) {
+	_, err := wedding.IsValid()
+	if err != nil {
+		return nil, err
+	}
+	
+	updatedWedding, err := ws.Repository.Save(wedding)
+	if err != nil {
+		return nil, err
+	}
+	
+	return updatedWedding, nil
+}
+
+func (ws WeddingService) Enable(wedding application.WeddingInterface) error {
+	enablingError := wedding.Enable()
+	if enablingError != nil {
+		return enablingError
+	}
+	
+	_, err := ws.Repository.Save(wedding)
+	if err != nil {
+		return err
+	}
+	
+	return nil
+}
+
+func (ws WeddingService) Disable(wedding application.WeddingInterface) error {
+	wedding.Disable()
+	_, err := ws.Repository.Save(wedding)
+	if err != nil {
+		return err
+	}
+	
+	return nil
+}
+```
