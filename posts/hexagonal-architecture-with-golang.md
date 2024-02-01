@@ -1,7 +1,7 @@
 ---
-title: Hexagonal Architecture with Golang
-date: 2024-01-31
-tags: architecture,api,golang
+title: 'Hexagonal Architecture with Golang'
+date: '2024-01-31'
+tags: 'architecture,api,golang'
 ---
 
 ---
