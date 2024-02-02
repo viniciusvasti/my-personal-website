@@ -59,7 +59,7 @@ export default function PostPage(props) {
     return (
         <div>
             <Header />
-            <section>
+            <section className="flex flex-col items-left">
                 <h1 className="text-3xl font-bold text-slate-800 mb-1">
                     {data.title}
                 </h1>
@@ -71,7 +71,7 @@ export default function PostPage(props) {
                 <div className="text-sm font-light text-gray-400">
                     <Date dateString={data.date} />
                 </div>
-                <article className="prose prose-indigo max-w-none sm:prose-lg lg:prose-lg prose-pre:rounded-xl">
+                <article className="prose prose-indigo max-w-none sm:prose-lg lg:prose-lg prose-pre:rounded-xl prose-hr:mt-7 prose-hr:mb-7">
                     <Markdown
                         options={{
                             enforceAtxHeadings: true,
