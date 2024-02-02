@@ -422,3 +422,239 @@ func (p *WeddingSQLRepository) update(wedding application.WeddingInterface) (app
 	return wedding, nil
 }
 ```
+
+The other adapter we're implementing is an HTTP server to expose our application through HTTP Endpoints.
+But first, let's implement DTOs (Data Transfer Objects) to give us the power to expose just the details we want about a Wedding. We have nothing to hide so far, but I'm sure I'm going to add metadata properties like `created/updated by` and `created/updated at` for instance and I don't want to expose these fields.
+
+```Go
+// adapters/dto/wedding.go
+package dto
+
+import (
+	"time"
+	"viniciusvasti/cerimonize/application"
+)
+
+type WeddingDTO struct {
+	ID     string  `json:"id"`
+	Name   string  `json:"name"`
+	Date   string  `json:"date"`
+	Budget float64 `json:"budget"`
+	Status string  `json:"status"`
+}
+
+func (w *WeddingDTO) Bind(wedding application.WeddingInterface) {
+	w.ID = wedding.GetId()
+	w.Name = wedding.GetName()
+	w.Date = wedding.GetDate().String()
+	w.Budget = wedding.GetBudget()
+	w.Status = wedding.GetStatus()
+}
+
+func BindAll(weddings []application.WeddingInterface) []WeddingDTO {
+	var weddingsDTO []WeddingDTO
+	for _, wedding := range weddings {
+		var weddingDTO WeddingDTO
+		weddingDTO.Bind(wedding)
+		weddingsDTO = append(weddingsDTO, weddingDTO)
+	}
+	return weddingsDTO
+}
+
+func (w WeddingDTO) ConvertToEntity() (*application.Wedding, error) {
+	date, err := time.Parse("2006-01-02 15:04:05-07:00", w.Date)
+	if err != nil {
+		return nil, err
+	}
+	return &application.Wedding{
+		ID:     w.ID,
+		Name:   w.Name,
+		Date:   date,
+		Budget: w.Budget,
+		Status: w.Status,
+	}, nil
+}
+```
+
+Now we're ready to implement the HTTP Handlers for the HTTP Verbs `GET`, `POST`, and `PUT`.
+They're very coupled to the `Echo` Go framework we're using in this project, so that's why we need to avoid coupling our service to it.
+
+```Go
+// adapters/web/rest/handler/wedding.go
+package rest_handler
+
+import (
+	"net/http"
+	"viniciusvasti/cerimonize/adapters/dto"
+	"viniciusvasti/cerimonize/application/ports"
+
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/gommon/log"
+)
+
+type WeddingRestHandler struct {
+	Service ports.WeddingServiceInterface
+}
+
+func (wh WeddingRestHandler) HandleGet(c echo.Context) error {
+	wedding, err := wh.Service.Get(c.Param("id"))
+	if err != nil {
+		// TODO: Find a better way to handle this error
+		if err.Error() == "sql: no rows in result set" {
+			return echo.NewHTTPError(http.StatusNotFound, "Wedding not found")
+		}
+		log.Error(err.Error())
+		return echo.NewHTTPError(http.StatusInternalServerError, "Internal server error")
+	}
+	weddingDTO := dto.WeddingDTO{}
+	weddingDTO.Bind(wedding)
+	return c.JSON(http.StatusOK, weddingDTO)
+}
+
+func (wh WeddingRestHandler) HandleGetAll(c echo.Context) error {
+	result, err := wh.Service.GetAll()
+	if err != nil {
+		log.Error(err.Error())
+		return echo.NewHTTPError(http.StatusInternalServerError, "Internal server error")
+	}
+	weddingsDTO := dto.BindAll(result)
+	return c.JSON(http.StatusOK, weddingsDTO)
+}
+
+func (wh WeddingRestHandler) HandleCreate(c echo.Context) error {
+	weddingDTO := dto.WeddingDTO{}
+	if err := c.Bind(&weddingDTO); err != nil {
+		log.Error(err.Error())
+		return echo.NewHTTPError(http.StatusUnprocessableEntity, "Invalid request body")
+	}
+
+	wedding, err := weddingDTO.ConvertToEntity()
+	if err != nil {
+		log.Error(err.Error())
+		return echo.NewHTTPError(http.StatusUnprocessableEntity, "Invalid request body")
+	}
+
+	createdWedding, err := wh.Service.Create(wedding.GetName(), wedding.GetDate(), wedding.GetBudget())
+	if err != nil {
+		log.Error(err.Error())
+		return echo.NewHTTPError(http.StatusInternalServerError, "Internal server error")
+	}
+	createdDTO := dto.WeddingDTO{}
+	createdDTO.Bind(createdWedding)
+	return c.JSON(http.StatusCreated, createdDTO)
+}
+
+func (wh WeddingRestHandler) HandleUpdate(c echo.Context) error {
+	weddingDTO := dto.WeddingDTO{}
+	if err := c.Bind(&weddingDTO); err != nil {
+		log.Error(err.Error())
+		return echo.NewHTTPError(http.StatusUnprocessableEntity, "Invalid request body")
+	}
+
+	wedding, err := weddingDTO.ConvertToEntity()
+	if err != nil {
+		log.Error(err.Error())
+		return echo.NewHTTPError(http.StatusUnprocessableEntity, "Invalid request body")
+	}
+
+	updatedWedding, err := wh.Service.Update(wedding)
+	if err != nil {
+		log.Error(err.Error())
+		return echo.NewHTTPError(http.StatusInternalServerError, "Internal server error")
+	}
+	updatedDTO := dto.WeddingDTO{}
+	updatedDTO.Bind(updatedWedding)
+	return c.JSON(http.StatusOK, updatedDTO)
+}
+
+```
+
+Now we can implement our Server component which will set everything needed to run the API
+
+```Go
+// adapters/web/rest/server.go
+package rest
+
+import (
+	"database/sql"
+	"log"
+	"time"
+	"viniciusvasti/cerimonize/adapters/sqldb"
+	page_handler "viniciusvasti/cerimonize/adapters/web/pages/handler"
+	rest_handler "viniciusvasti/cerimonize/adapters/web/rest/handler"
+	"viniciusvasti/cerimonize/application/services"
+
+	"github.com/labstack/echo/v4"
+	_ "github.com/mattn/go-sqlite3"
+)
+
+type Server struct {
+}
+
+func (s *Server) Serve() {
+	app := echo.New()
+	app.HideBanner = true
+	app.Server.ReadTimeout = time.Second * 10
+	app.Static("/public", "public")
+
+	// Web App
+	landingHandler := page_handler.LandingPageHandler{}
+	app.GET("/", landingHandler.Handle)
+	app.POST("/cadastrar", func(c echo.Context) error {
+		c.Response().Header().Set("Content-Type", "application/json")
+		newEmail := c.FormValue("email")
+		log.Printf("New email: %s", newEmail)
+		return c.Redirect(302, "/?registered=true")
+	})
+
+	// REST API
+	cerimonizoRoutes := app.Group("/api")
+	makeWeddingRoutes(cerimonizoRoutes)
+
+	err := app.Start(":3000")
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
+func makeWeddingRoutes(cerimonizoRoutes *echo.Group) {
+	database, err := sql.Open("sqlite3", "database.db")
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+	weddingRepository := sqldb.NewWeddingSQLRepository(database)
+	weddingService := services.NewWeddingService(weddingRepository)
+	weddingRoutes := cerimonizoRoutes.Group("/weddings")
+	weddingHandler := rest_handler.WeddingRestHandler{
+		Service: weddingService,
+	}
+	weddingRoutes.GET("", weddingHandler.HandleGetAll)
+	weddingRoutes.GET("/:id", weddingHandler.HandleGet)
+	weddingRoutes.POST("", weddingHandler.HandleCreate)
+	weddingRoutes.PUT("/:id", weddingHandler.HandleUpdate)
+}
+
+```
+Note how a concrete DB Repository implementation for SQL is injected into the Application Service. Once the Service is expecting an Interface, it can be easily changed to a NoSQL DB or any other database.
+
+And that's how we start the server
+
+```Go
+// cmd/main.go
+package main
+
+import "viniciusvasti/cerimonize/adapters/web/rest"
+
+func main() {
+	server := rest.Server{}
+	server.Serve()
+}
+```
+We could also move the responsibility of creating the concrete instances to this `main` function and inject it into the Server. Yeah, it should be the way to go so we don't need to touch the Server implementation when changing adapters. But I think it's enough for this post. We covered an implementation of Hexagonal Architecture for Golang.
+
+Of course, this structure is just one way of achieving that.
+The Hexagonal Architecture original paper doesn't enforce many things. It just presents the concepts and goals of `Ports and Adapters`.
+
+---
+
+The complete code of this post can be found at [hexagonal-architecture](https://github.com/viniciusvasti/cerimonizo/tree/hexagonal-architecture)
