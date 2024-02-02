@@ -15,7 +15,7 @@ export const metadata = {
     },
     description: "Day-to-day life and coding as a Software Engineer",
     icons: {
-        icon: "/images/profile.jpg",
+        icon: "/images/profile2.jpg",
     },
     openGraph: {
         type: "website",
@@ -24,7 +24,7 @@ export const metadata = {
         description: "Day-to-day life and coding as a Software Engineer",
         images: [
             {
-                url: "/images/profile.jpg",
+                url: "/images/profile2.jpg",
                 width: 200,
                 height: 200,
                 alt: "vinisantos.dev",
