@@ -1,4 +1,5 @@
-import { SpeedInsights } from '@vercel/speed-insights/next';
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
 import { Inter } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
@@ -56,6 +57,7 @@ export default function RootLayout({ children }) {
                         </div>
                     </footer>
                 </div>
+                <Analytics />
                 <SpeedInsights />
             </body>
         </html>
