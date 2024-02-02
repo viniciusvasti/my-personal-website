@@ -1,3 +1,4 @@
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Inter } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
@@ -55,6 +56,7 @@ export default function RootLayout({ children }) {
                         </div>
                     </footer>
                 </div>
+                <SpeedInsights />
             </body>
         </html>
     );
