@@ -1,5 +1,5 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from "next/image";
+import Link from "next/link";
 
 const name = "Vinícius A dos Santos";
 
@@ -42,23 +42,34 @@ const Header = ({ home }) => {
                         />
                     </Link>
                     <Link href="/" className="text-inherit">
-                        <h2 className="text-2xl font-semibold text-gray-50">{name}</h2>
+                        <h2 className="text-2xl font-semibold text-gray-50">
+                            {name}
+                        </h2>
                     </Link>
                 </>
             )}
-            <Link
-                href="/about-me"
-                className="text-slate-300 hover:underline hover:text-blue-400"
-            >
-                About Me
-            </Link>
+            <div>
+                <Link
+                    href="/about-me"
+                    className="text-slate-300 hover:underline hover:text-blue-400"
+                >
+                    About Me
+                </Link>
+                <span className="mx-2 text-slate-300">•</span>
+                <Link
+                    href="mailto:vinicius.vas.ti+from-blog@gmail.com"
+                    className="text-slate-300 hover:underline hover:text-blue-400"
+                >
+                    Email Me
+                </Link>
+            </div>
             <div className="flex items-center">
                 <SocialLink
                     img="/images/linkedin.svg"
                     imgAlt="LinkedIn"
                     url="https://www.linkedin.com/in/vinicius-vas-ti/"
                     size={home ? 32 : 20}
-                    />
+                />
                 <SocialLink
                     img="/images/github.svg"
                     imgAlt="GitHub"
@@ -68,6 +79,6 @@ const Header = ({ home }) => {
             </div>
         </header>
     );
-}
+};
 
 export default Header;
