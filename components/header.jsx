@@ -76,6 +76,12 @@ const Header = ({ home }) => {
                     url="https://github.com/viniciusvasti/"
                     size={home ? 32 : 20}
                 />
+                <SocialLink
+                    img="/images/email.svg"
+                    imgAlt="Email"
+                    url="mailto:vinicius.vas.ti+from-blog@gmail.com"
+                    size={home ? 32 : 20}
+                />
             </div>
         </header>
     );
