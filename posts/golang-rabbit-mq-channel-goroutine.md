@@ -237,6 +237,7 @@ golang-rabbit-mq-channel-goroutine-demo-app-1       | 2024/02/07 20:19:59 Total:
 Now let's see how concurrency is implemented and what's the result of it.
 Code here [listener.go](https://github.com/viniciusvasti/golang-rabbit-mq-channel-goroutine-demo/blob/main/internal/mqlistener/listener.go).
 And the snippets that matters:
+
 ```go
 // defining the amount of concurrent workers/threads processing the messages
 const workerPoolSize = 5
