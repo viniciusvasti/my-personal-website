@@ -11,7 +11,7 @@ const name = "Vinícius A dos Santos";
 export const metadata = {
     title: {
         default: "vinisantos.dev",
-        template: "%s | AppoMed",
+        template: "%s | vinisantos.dev",
     },
     description: "Day-to-day life and coding as a Software Engineer",
     icons: {

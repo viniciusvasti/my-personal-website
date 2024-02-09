@@ -53,6 +53,15 @@ function Code({ className, children }) {
     );
 }
 
+export async function generateMetadata({ params, searchParams }, parent) {
+    const slug = params.slug;
+    const { data } = getPostData(slug);
+
+    return {
+        title: data.title,
+    };
+}
+
 export default function PostPage(props) {
     const slug = props.params.slug;
     const { data, content } = getPostData(slug);
