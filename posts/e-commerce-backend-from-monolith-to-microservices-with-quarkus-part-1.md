@@ -36,14 +36,26 @@ Responsible for processing payments from customers regarding their orders.
 Responsible for shipping the packages with the products ordered.
 # Architecture
 ## C4-1 - System Context
+Here is described the macro view of the E-commerce system:
+1. A customer who can navigate the website, search products, add them to the cart, and purchase an order;
+2. A store employee who can register/change products, set prices, adjust inventory stock, etc;
+3. The e-commerce system itself, maintained by the company's engineering team (me);
+4. And a third-party system which provides the delivering service for us.
 
 ![](../images/posts/e-commerce-backend-from-monolith-to-microservices-with-quarkus/c4-1.png)
 
 ## C4-2 - Containers
+Zooming in, we can see that the E-commerce system is a compound of 2 applications and a database.
+1. A web SPA built upon React.js;
+2. The backend monolith built with Java and Quarkus;
+3. The MySQL database which stores products, payments, shipments, and orders data.
 
 ![](../images/posts/e-commerce-backend-from-monolith-to-microservices-with-quarkus/c4-2.png)
 
 ## C4-3 - Components
+Zooming in a bit more, here is what is more of our interest as developers. An inside view of the Monolith backend app.
+The initial architecture is pretty simple: A RestController handles the HTTP requests and calls either a Service or a Use Case class. Maybe I should decide to name them either Service or Use Case, but I decided to mix it up depending on the intention of that.
+I'm calling Service components that just run CRUD operations to manage the data. Whereas Use Cases are classes that implement rich, real-life-based processes like ordering products for example. And finally, the data layer is represented by the repositories which communicate with the database. This architecture may (will) evolve and get more layers, components, and adapters for other external resources besides the database.
 
 ![](../images/posts/e-commerce-backend-from-monolith-to-microservices-with-quarkus/c4-3.png)
 
