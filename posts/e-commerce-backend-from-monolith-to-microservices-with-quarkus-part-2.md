@@ -118,10 +118,10 @@ The simplification Quarkus did with Panache over Hibernate is very cool. It redu
 ## What I may improve
 - My core domain objects are coupled to the infra persistence layer because of their extending `PanacheEntity` as mentioned. To keep my architecture cleaner, I could implement the DB entities separately, in the persistence layer and create a map utility to convert domain objects into DB entities and vice-versa. I will probably do that later.
 - Also, I'm using DTO for HTTP request payloads. It would be a good practice to use it in the response as well. I'll also do it later.
-- Better attending REST standards. Maybe even implement RESTFul and HATEOAS.
+- Better attending REST standards. Maybe even implement RESTFUL and HATEOAS.
 
 ---
 
-That's it for this post. The next one will be more focused on the infrastructure =).
+That's it for this post. The next one will be focused on improving the performance of the API.
 
 Repository: https://github.com/viniciusvasti/practicing-quarkus-ecommerce/tree/monolith/products-catalog-rest-api
