@@ -1,5 +1,5 @@
 ---
-title: E-commerce Backend - From Monolith to Microservices with Quarkus - Part 2
+title: E-commerce Backend - Monolith - Starting with Quarkus - Part 2
 date: 2024-04-05
 tags:
   - api

@@ -1,5 +1,5 @@
 ---
-title: E-commerce Backend - From Monolith to Microservices with Quarkus - Part 3 - Caching
+title: E-commerce Backend - Monolith - Caching with Redis - Part 3
 date: 2024-04-18
 tags:
   - api
