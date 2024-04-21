@@ -1,5 +1,5 @@
 ---
-title: E-commerce Backend - Monolith - Overall Architecture - Part 1
+title: E-commerce Backend - Monolith - Overall Architecture - (Part 1)
 date: 2024-04-03
 tags:
   - api

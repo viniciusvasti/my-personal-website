@@ -1,5 +1,5 @@
 ---
-title: E-commerce Backend - Monolith - Caching with Redis - Part 3
+title: E-commerce Backend - Monolith - Caching with Redis - (Part 3)
 date: 2024-04-18
 tags:
   - api
@@ -8,6 +8,7 @@ tags:
   - java
   - systemsdesign
 ---
+This post is part of a series that already has:
 This post is part of a series that already has:
 - [E-commerce Backend - From Monolith to Microservices with Quarkus - Part 1](https://vinisantos.dev/posts/e-commerce-backend-from-monolith-to-microservices-with-quarkus-part-1)
 - [E-commerce Backend - From Monolith to Microservices with Quarkus - Part 2](https://vinisantos.dev/posts/e-commerce-backend-from-monolith-to-microservices-with-quarkus-part-2)
