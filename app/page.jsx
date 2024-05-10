@@ -8,9 +8,9 @@ const PostList = ({ className, children }) => {
     return <div className={className}>{children}</div>;
 };
 
-const PostListItem = ({ id, title, date, tags }) => {
+const PostListItem = ({ id, title, date, tags, backgroundColor = "white" }) => {
     return (
-        <div className="flex flex-col justify-between gap-2 w-full border border-slate-200 rounded-md bg-white shadow-md p-4">
+        <div className={`flex flex-col justify-between gap-2 w-full border border-slate-200 rounded-md bg-${backgroundColor} shadow-md p-4`}>
             <span>
                 <Link href={`/posts/${id}`}>
                     <h2 className="text-lg font-bold text-slate-500 hover:underline">
@@ -36,15 +36,27 @@ export default function Home() {
         <section className="text-xl">
             <Header home={true} />
             <PostList className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {allPostsData.map(({ id, date, title, tags }, index) => (
-                    <PostListItem
-                        key={index}
-                        id={id}
-                        title={title}
-                        date={date}
-                        tags={tags}
-                    />
-                ))}
+                <PostListItem
+                    id="the-biggest-challenge-i-faced-in-my-career"
+                    title="The biggest challenge I've faced in my career"
+                    date="2024-05-08"
+                    tags={["career", "tech-lead"]}
+                    backgroundColor="yellow-50"
+                />
+                {allPostsData
+                    .filter(
+                        ({ id }) =>
+                            id !== "the-biggest-challenge-i-faced-in-my-career"
+                    )
+                    .map(({ id, date, title, tags }, index) => (
+                        <PostListItem
+                            key={index}
+                            id={id}
+                            title={title}
+                            date={date}
+                            tags={tags}
+                        />
+                    ))}
             </PostList>
         </section>
     );
