@@ -212,11 +212,16 @@ Thread A: 17
 Thread A: 18
 ```
 
-Note how `Thread A` stopped printing at `18`. That's because both the `main` thread was done as well as `Thread B` which is a User thread and just had to print from 0 to 9.
-As soon as all the User threads were finished, `Thread A` which is a Daemon thread was killed eve though it didn't finished printing from 0 to 99.
+Note how `Thread A` stopped printing at `18`. That's because, the `main` thread and `Thread B`, a User thread, were done and had to print from 0 to 9 only.
+After all the User threads were finished, `Thread A`, a Daemon thread, was killed even though it didn't finish printing from 0 to 99.
 
 ---
 
-The code can be found [here](https://github.com/viniciusvasti/java-training/tree/main/src/main/java/com/vas/concurrency)
+The code can be found [here](https://github.com/viniciusvasti/java-training/tree/main/src/main/java/com/vas/concurrency/threads)
 
 Thanks for reading :)
+
+Related posts:
+- https://vinisantos.dev/posts/java-concurrency-multi-threading-sync
+- https://vinisantos.dev/posts/java-concurrency-thread-safe-singleton
+- https://vinisantos.dev/posts/java-concurrency-thread-safe-queue

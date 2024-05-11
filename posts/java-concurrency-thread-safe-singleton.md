@@ -123,4 +123,11 @@ And finally,  our thread-safe Singleton is complete.
 
 ---
 
+The code can be found [here](https://github.com/viniciusvasti/java-training/blob/main/src/main/java/com/vas/concurrency/volatilee/ThreadSafeSingleton.java)
+
 That's all. Thank you!
+
+Related posts:
+- https://vinisantos.dev/posts/java-concurrency-multi-threading
+- https://vinisantos.dev/posts/java-concurrency-multi-threading-sync
+- https://vinisantos.dev/posts/java-concurrency-thread-safe-queue

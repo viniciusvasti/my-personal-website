@@ -238,7 +238,7 @@ public class MultiThreadingSynchronizationMethod {
 Here I used the `synchronized` keyword at the method level. Behind the scenes at compiling, it's the same as `synchronized (this) {...}`.
 You see? `synchronized` accepts any object. Therefore, we can pass the Stack instance itself.
 And since I did the same for `push` and `pop`, they share the same lock object.
-Now, If `Thread A` gets the lock rights of `push`, `Thread B` will have to wait until it's done to be able to call either `pop` or `push`.
+Now, If `Thread A` gets the `push` lock, `Thread B` will need to wait until it's done to be able to call either `pop` or `push`.
 
 And this time the output looks beautiful:
 
@@ -269,11 +269,13 @@ No `-2147483648` being popped, no weird sequence of pops getting the same values
 
 ---
 
-The code can be found [here](https://github.com/viniciusvasti/java-training/tree/main/src/main/java/com/vas/concurrency)
+The code can be found [here](https://github.com/viniciusvasti/java-training/tree/main/src/main/java/com/vas/concurrency/synchronization)
 
 Thanks for reading :)
 
 ---
 
-Relative posts:
-[Java Concurrency: Threads](https://vinisantos.dev/posts/java-concurrency-multi-threading)
+Related posts:
+- https://vinisantos.dev/posts/java-concurrency-multi-threading
+- https://vinisantos.dev/posts/java-concurrency-thread-safe-singleton
+- https://vinisantos.dev/posts/java-concurrency-thread-safe-queue
