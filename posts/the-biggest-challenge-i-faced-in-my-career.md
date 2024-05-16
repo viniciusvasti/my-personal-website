@@ -31,7 +31,7 @@ whenever I'm willing to do something, I try it the right way, even though my foc
 So I aligned with them that I would do some refactoring. They rapidly agreed when they realized I knew what I was talking about, while they just started coding without studying the Tech Stack they were working with a little more.
 That also included refactoring the components for reuse and decoupling the business logic from the UI.
 
-Also and most importantly, I've identified flaws in the implemented sales flow (like beeping product barcodes, checking prices, checking for discounts, listing available payment methods, asking and processing payment, and finally printing the invoice).
+Also and most importantly, I've identified flaws in the implemented sales flow (like beeping product barcodes, checking prices, checking for discounts, listing available payment methods, asking and processing payment, and finally printing the receipt).
 I can't remember what was wrong. But I demonstrated how it could go wrong to the team (especially the project's Product Owner), and we reviewed and fixed that flow.
 
 Those actions I took, and the approaches I followed to talk to the team regarding what they did wrong, rapidly caught my manager's attention, so I naturally became the team's Tech Leader (before that, the PO was also kind doing the TL's job).
@@ -82,7 +82,7 @@ These were the leveraged tools:
 The sales process in a physical store includes integrations with distinct external devices to:
 1. Beep product barcodes
 2. Interact with the Credit Card PIN pad to process the payment
-3. Send the invoice raw text to a small computer plugged into a printer to print the customers' invoice
+3. Send the receipt raw text to a small computer plugged into a printer to print the customers' receipt
 
 To solve number 1, we had to try different barcode readers from different vendors until we found one that best integrated with the React Native app,  and that had reliable hardware communication. We handle that using Native Modules and Java.
 
@@ -92,17 +92,17 @@ And finally the hardest one. Dealing with hardware is not one of my strengths. H
 I followed up with their tries and final solution, then learned from them:
 - We set a printing service queue in the small computer running Linux
 - Connected it to the printer through the store's local network
-- Established socket a connection between the React Native app and the Linux computer to send out the raw invoice's text to be printed
+- Established socket a connection between the React Native app and the Linux computer to send out the raw receipt's text to be printed
 
-### The Mobile PoS vs the Invoice Printer
+### The Mobile PoS vs the Receipt Printer
 As I mentioned earlier, I've delegated that part to other developers who were more proficient with hardware.
 But even they couldn't make it work 100% of the time. 
-Around 1 every 50 sales, we had an issue printing an invoice. The deal is that: by law, the customer has the right to get the invoice, but we couldn't try to print it again because of constraints that I won't describe right now.
-Then I brought out 2 options that I discussed with the Store Operations team. In case of the invoice printing fails, we could either:
-- The store employee could go to a computer, access the Brazilian Federal Taxes website, consult the invoice by its number, and print it
-- Send the invoice by email (that we could do how many times he wanted, just pushing a button in the app)
+Around 1 every 50 sales, we had an issue printing an receipt. The deal is that: by law, the customer has the right to get the receipt, but we couldn't try to print it again because of constraints that I won't describe right now.
+Then I brought out 2 options that I discussed with the Store Operations team. In case of the receipt printing fails, we could either:
+- The store employee could go to a computer, access the Brazilian Federal Taxes website, consult the receipt by its number, and print it
+- Send the receipt by email (that we could do how many times he wanted, just pushing a button in the app)
 
-The last one is preferred, because it would be much faster and easier. The first should happen only if the customer strongly demands a paper-printed invoice.
+The last one is preferred, because it would be much faster and easier. The first should happen only if the customer strongly demands a paper-printed receipt.
 The Operations Team agreed with those solutions.
 ### Physical Stores' poor network connection
 Another big deal was that among the 300 physical stores, tens of those, maybe hundreds, had a poor internet connection. That means the requests to the APIs running in the cloud could have delayed responses or even failed if the internet was down.
@@ -111,7 +111,7 @@ The old Desktop PoSs had contingency strategies for that. It had a local databas
 We had to implement mechanisms to do the same and keep the data in sync with the cloud servers in the React Native app too.
 Not a big deal, it's the same logic as the Desktop version. But this is a mobile device with a small storage disk.
 
-Then I decided to leverage those small computers required for connecting to the invoice printer. We installed a database on them and implemented services to download all that data and keep it in sync, then serve the data as a RESTFul API through the store's local network to the Mobile PoS.
+Then I decided to leverage those small computers required for connecting to the receipt printer. We installed a database on them and implemented services to download all that data and keep it in sync, then serve the data as a RESTFul API through the store's local network to the Mobile PoS.
 ### Getting Devs up-to-speed with a new Tech Stack
 To rebuild such a big and complex system (involves much more than just beeping products and billing the buyers. For instance: selling gift cards includes calling third-party services, allowing customers to pay the bill of their store's privately labeled card, interacting with the loyalty program APIs, etc), I worked with the Product Owner on refining hundreds of User Story tickets.
 
