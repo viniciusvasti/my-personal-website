@@ -16,7 +16,7 @@ This post is part of a series that already has:
 
 ---
 
-# Introduction
+## Introduction
 So far we're running the App in Dev mode while leveraging Quarkus Dev Services.
 While running like that, the Quarkus platform runs containers for the supporting services.
 Those services are a Postgres database and a Redis server until this moment.
@@ -26,6 +26,7 @@ To accomplish that, I will leverage [Docker Compose](https://docs.docker.com/com
 
 ---
 
+## Properties Setup
 First, I needed to set up Postgres and Redis connection properties.
 I set them as `prod`, because by default when running a Quarkus App from its built `.jar`, with `quarkus run`, or from its native executable, it runs with the `prod` profile:
 
@@ -44,10 +45,46 @@ I set them as `prod`, because by default when running a Quarkus App from its bui
 %prod.quarkus.redis.hosts=redis://${REDIS_HOST}:${REDIS_PORT}
 ```
 
-And the Docker Compose file:
+## Docker Compose
+In order to make it more flexible, I've created two distinct docker compose files. One for the infrastructure and one for the App. This way, I can run all of them in docker or just the infra.
+If I want to run my App out of the docker daemon (with `maven run`, or from the `.jar`, for instance), I can run just the Postgres DB and Redis.
 
 ```yaml
 # compose.dev.yaml
+
+# The yaml format which is suitable for running with Docker Engine 1.13.0+
+version: '3'
+# The services composition name
+name: ecommerce-monolith
+services:
+  em-postgres:
+    container_name: em-postgres
+    image: postgres:13.2
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: password
+      PGDATA: /data/postgres
+    ports:
+      - 5499:5432
+    networks:
+      - ecommerce-network
+
+  em-redis:
+    image: redis:6.2.1
+    ports:
+      - 6399:6379
+    networks:
+      - ecommerce-network
+
+# A dedicated and isolated network for those services to communicate in bridge mode
+networks:
+  ecommerce-network:
+    driver: bridge
+```
+
+```yaml
+# compose-app.dev.yaml
 
 # The yaml format which is suitable for running with Docker Engine 1.13.0+
 version: '3'
@@ -68,7 +105,6 @@ services:
       DATABASE_HOST: em-postgres
       DATABASE_PORT: 5432
       DATABASE_NAME: postgres
-      DATABASE_URL: postgresql://em-postgres:5432/postgres
       DATABASE_VERSION: 13.2
       # Same as above
       REDIS_HOST: em-redis
@@ -77,35 +113,110 @@ services:
     depends_on:
       - em-postgres
       - em-redis
-
-  em-postgres:
-    container_name: em-postgres
-    image: postgres:13.2
-    environment:
-      POSTGRES_USER: root
-      POSTGRES_DB: postgres
-      POSTGRES_PASSWORD: password
-      PGDATA: /data/postgres
-    ports:
-      - 5499:5432
-
-  em-redis:
-    image: redis:6.2.1
-    ports:
-      - 6399:6379
-
+    networks:
+      - ecommerce-network
 ```
 
 Note the caveat of `depends-on` property. Fortunately, there are ways to force a service to start only after another one is ready.
-To run the app along with those services, we need to:
-1. build the App docker image: `quarkus image build docker`
-2. run the compose command: `docker-compose -f compose.dev.yaml`
 
-We could set the image build in the `compose.dev.yaml` file too.
-I chose to leverage the built-in Quarkus command to build the App's image, but the other way would require a single command.
+To run the both the infra services and the App, we need to:
+1. build the App docker image by running the following command from the `ecommerce-monolith` folder:
+   `./mvnw quarkus:image-build`
+2. run the compose command:
+   `docker-compose -f infra/compose.dev.yaml -f infra/compose-app.dev.yaml`
+   That will combine both `yaml` files
+
+If I only need the infra, it's just `docker-compose -f infra/compose-app.dev.yaml`
+
+We could set the image build in the `compose.dev.yaml` file too. However, I chose to leverage the built-in Maven Quarkus Plugin command to build the App's image, because I will use that in my CI jobs later.
+
+## Scripting
+Now, I think that having to remember several steps for a specific action might be overwhelming.
+I aim for a single action: run my App which depends on a few infra services, but I need to remember to build the App's image, because I may have changed its code, and run `docker-compose` against 2 configuration files.
+We can simplify that and reduce things to be remembered by just running:
+
+```bash
+./run-local.sh
+```
+
+And here is what the script file looks like:
+
+```bash
+#!/bin/bash
+
+declare dc_infra=infra/compose.dev.yaml
+declare dc_app=infra/compose-app.dev.yaml
+
+# building the App container image
+function build_app() {
+    cd ecommerce-monolith
+    ./mvnw quarkus:image-build -DskipTests
+    cd ..
+}
+
+# Starting just the Infra
+function start_infra() {
+    echo "Starting infra..."
+    docker-compose -f $dc_infra up -d
+}
+
+function stop_infra() {
+    echo "Stopping infra..."
+    docker-compose -f $dc_infra stop
+}
+
+# Starting just the Infra and App
+function start() {
+    echo "Starting all services..."
+    build_app
+    docker-compose -f $dc_infra -f $dc_app up -d
+    docker-compose -f $dc_infra -f $dc_app logs -f
+}
+
+function stop() {
+    echo "Stopping all services..."
+    docker-compose -f $dc_infra -f $dc_app stop
+    docker-compose -f $dc_infra -f $dc_app rm -f
+}
+
+# Restarting (in case of changes in the App or in the yaml files)
+function restart() {
+    stop
+    sleep 5
+    start
+}
+
+# Default action is to start Infra and App
+action=start
+
+if [ "$1" == "start" ]; then
+    action=start
+elif [ "$1" == "stop" ]; then
+    action=stop
+elif [ "$1" == "restart" ]; then
+    action=restart
+elif [ "$1" == "start-infra" ]; then
+    action=start_infra
+elif [ "$1" == "stop-infra" ]; then
+    action=stop_infra
+else
+    echo "Invalid action. Use start, stop, restart, start-infra or stop-infra."
+    exit 1
+fi
+
+eval $action
+```
+
+As you can see in the script, we can also run:
+- `./run-local.sh stop`
+- `./run-local.sh start_infra`
+- `./run-local.sh stop_infra`
+- `./run-local.sh restart`
+
+Perfect!
 
 ---
 
 And that's it for this post. Thanks for reading.
 
-[Code here](https://github.com/viniciusvasti/practicing-quarkus-ecommerce/tree/monolith/products-catalog-rest-api)
+[Code here](https://github.com/viniciusvasti/practicing-quarkus-ecommerce/)
