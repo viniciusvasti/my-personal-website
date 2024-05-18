@@ -3,10 +3,11 @@ title: E-commerce Backend - Monolith - Docker Compose to run the App and Infra l
 date: 2024-05-12
 tags:
   - api
-  - quarkus
   - java
   - docker
   - backend
+  - docker-compose
+  - devops
 ---
 This post is part of a series that already has:
 - [E-commerce Backend - Monolith - Overall Architecture - (Part 1)](https://vinisantos.dev/posts/e-commerce-backend-from-monolith-to-microservices-with-quarkus-part-1)
@@ -44,13 +45,12 @@ I set them as `prod`, because by default when running a Quarkus App from its bui
 %prod.quarkus.hibernate-orm.sql-load-script=no-file
 %prod.quarkus.redis.hosts=redis://${REDIS_HOST}:${REDIS_PORT}
 ```
-
 ## Docker Compose
 In order to make it more flexible, I've created two distinct docker compose files. One for the infrastructure and one for the App. This way, I can run all of them in docker or just the infra.
 If I want to run my App out of the docker daemon (with `maven run`, or from the `.jar`, for instance), I can run just the Postgres DB and Redis.
 
 ```yaml
-# compose.dev.yaml
+# infra/compose/compose.dev.yaml
 
 # The yaml format which is suitable for running with Docker Engine 1.13.0+
 version: '3'
@@ -129,7 +129,6 @@ To run the both the infra services and the App, we need to:
 If I only need the infra, it's just `docker-compose -f infra/compose-app.dev.yaml`
 
 We could set the image build in the `compose.dev.yaml` file too. However, I chose to leverage the built-in Maven Quarkus Plugin command to build the App's image, because I will use that in my CI jobs later.
-
 ## Scripting
 Now, I think that having to remember several steps for a specific action might be overwhelming.
 I aim for a single action: run my App which depends on a few infra services, but I need to remember to build the App's image, because I may have changed its code, and run `docker-compose` against 2 configuration files.
