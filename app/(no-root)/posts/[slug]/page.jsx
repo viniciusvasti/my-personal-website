@@ -59,6 +59,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
 
     return {
         title: data.title,
+        description: data.title,
     };
 }
 
