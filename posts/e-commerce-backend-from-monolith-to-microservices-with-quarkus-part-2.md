@@ -1,5 +1,5 @@
 ---
-title: E-commerce Backend - Monolith - Starting with Quarkus - Part 2
+title: E-commerce Backend - Monolith - Starting with Quarkus - (Part 2)
 date: 2024-04-05
 tags:
   - api
@@ -8,8 +8,15 @@ tags:
   - java
   - systemsdesign
 ---
-This post is part of a series that starts with:
-[E-commerce Backend - From Monolith to Microservices with Quarkus - Part 1](https://vinisantos.dev/posts/e-commerce-backend-from-monolith-to-microservices-with-quarkus-part-1)
+This post is part of a series that already has:
+- [E-commerce Backend - Monolith - Overall Architecture - (Part 1)](https://vinisantos.dev/posts/e-commerce-backend-from-monolith-to-microservices-with-quarkus-part-1)
+- [E-commerce Backend - Monolith - Caching with Redis - (Part 3)](https://vinisantos.dev/posts/e-commerce-backend-from-monolith-to-microservices-with-quarkus-part-3)
+- [E-commerce Backend - Monolith - Decoupling Components with Event Bus - (Part 4)](https://vinisantos.dev/posts/e-commerce-backend-from-monolith-to-microservices-with-quarkus-part-4)
+- [E-commerce Backend - Monolith - Docker Compose to run the App and Infra locally - (Part 5)](https://vinisantos.dev/posts/e-commerce-backend-from-monolith-to-microservices-with-quarkus-part-5)
+- [E-commerce Backend - Monolith - Local Kubernetes with Kind - to run the App and Infra - (Part 6)](https://vinisantos.dev/posts/e-commerce-backend-from-monolith-to-microservices-with-quarkus-part-6)
+- [E-commerce Backend - Monolith - Kubernetes Probes - (Part 7)](https://vinisantos.dev/posts/e-commerce-backend-from-monolith-to-microservices-with-quarkus-part-7)
+
+---
 
 In the last post, I designed the Architecture of the application I will be building to learn [Quarkus](https://quarkus.io).
 In this post, I will share some thoughts on starting with the Quarkus platform.

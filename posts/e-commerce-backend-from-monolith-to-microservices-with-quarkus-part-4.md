@@ -12,6 +12,11 @@ This post is part of a series that already has:
 - [E-commerce Backend - Monolith - Overall Architecture - (Part 1)](https://vinisantos.dev/posts/e-commerce-backend-from-monolith-to-microservices-with-quarkus-part-1)
 - [E-commerce Backend - Monolith - Starting with Quarkus - (Part 2)](https://vinisantos.dev/posts/e-commerce-backend-from-monolith-to-microservices-with-quarkus-part-2)
 - [E-commerce Backend - Monolith - Caching with Redis - (Part 3)](https://vinisantos.dev/posts/e-commerce-backend-from-monolith-to-microservices-with-quarkus-part-3)
+- [E-commerce Backend - Monolith - Docker Compose to run the App and Infra locally - (Part 5)](https://vinisantos.dev/posts/e-commerce-backend-from-monolith-to-microservices-with-quarkus-part-5)
+- [E-commerce Backend - Monolith - Local Kubernetes with Kind - to run the App and Infra - (Part 6)](https://vinisantos.dev/posts/e-commerce-backend-from-monolith-to-microservices-with-quarkus-part-6)
+- [E-commerce Backend - Monolith - Kubernetes Probes - (Part 7)](https://vinisantos.dev/posts/e-commerce-backend-from-monolith-to-microservices-with-quarkus-part-7)
+
+---
 
 This post is about decoupling components by leveraging Quarkus (Verte.x, actually) [EventBus](https://quarkus.io/guides/reactive-event-bus).
 It works in a very similar way as the Spring Events

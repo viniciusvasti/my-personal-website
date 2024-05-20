@@ -9,9 +9,14 @@ tags:
   - systemsdesign
 ---
 This post is part of a series that already has:
-This post is part of a series that already has:
-- [E-commerce Backend - From Monolith to Microservices with Quarkus - Part 1](https://vinisantos.dev/posts/e-commerce-backend-from-monolith-to-microservices-with-quarkus-part-1)
-- [E-commerce Backend - From Monolith to Microservices with Quarkus - Part 2](https://vinisantos.dev/posts/e-commerce-backend-from-monolith-to-microservices-with-quarkus-part-2)
+- [E-commerce Backend - Monolith - Overall Architecture - (Part 1)](https://vinisantos.dev/posts/e-commerce-backend-from-monolith-to-microservices-with-quarkus-part-1)
+- [E-commerce Backend - Monolith - Starting with Quarkus - (Part 2)](https://vinisantos.dev/posts/e-commerce-backend-from-monolith-to-microservices-with-quarkus-part-2)
+- [E-commerce Backend - Monolith - Decoupling Components with Event Bus - (Part 4)](https://vinisantos.dev/posts/e-commerce-backend-from-monolith-to-microservices-with-quarkus-part-4)
+- [E-commerce Backend - Monolith - Docker Compose to run the App and Infra locally - (Part 5)](https://vinisantos.dev/posts/e-commerce-backend-from-monolith-to-microservices-with-quarkus-part-5)
+- [E-commerce Backend - Monolith - Local Kubernetes with Kind - to run the App and Infra - (Part 6)](https://vinisantos.dev/posts/e-commerce-backend-from-monolith-to-microservices-with-quarkus-part-6)
+- [E-commerce Backend - Monolith - Kubernetes Probes - (Part 7)](https://vinisantos.dev/posts/e-commerce-backend-from-monolith-to-microservices-with-quarkus-part-7)
+
+---
 
 In the last post, I developed most of the functional parts of my E-commerce backend with [Quarkus](https://quarkus.io).
 In this post, I will improve its performance caching with Redis. More specifically, the endpoint that lists the products for the customer to view and add to their carts.
